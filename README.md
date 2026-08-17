@@ -76,12 +76,12 @@ The website serves as the digital gateway to the event — bringing together par
 
 CodeUtsava X is more than just a coding competition. It is a technology-focused celebration designed to bring students and developers together through:
 
-* 💻 **Hackathon** — Build innovative solutions to real-world problems
-* 🧠 **Workshops & Learning** — Learn from developers, mentors, and industry professionals
-* ⚡ **Coding & Technical Challenges** — Test your problem-solving and technical skills
-* 🌐 **Community Building** — Connect with students, developers, mentors, and technology enthusiasts
-* 🏆 **Competition & Recognition** — Compete, build, learn, and earn recognition
-* 🎨 **Creativity & Innovation** — Turn ideas into meaningful technological experiences
+- 💻 **Hackathon** — Build innovative solutions to real-world problems
+- 🧠 **Workshops & Learning** — Learn from developers, mentors, and industry professionals
+- ⚡ **Coding & Technical Challenges** — Test your problem-solving and technical skills
+- 🌐 **Community Building** — Connect with students, developers, mentors, and technology enthusiasts
+- 🏆 **Competition & Recognition** — Compete, build, learn, and earn recognition
+- 🎨 **Creativity & Innovation** — Turn ideas into meaningful technological experiences
 
 Participants from across the country can take part in the various activities conducted as part of CodeUtsava X and become a part of the CodeUtsava community.
 
@@ -93,9 +93,9 @@ The frontend currently uses the following stack:
 
 ### Frontend
 
-* [Next.js](https://nextjs.org/) — React framework for building the website
-* [Tailwind CSS](https://tailwindcss.com/) — Utility-first CSS framework
-* [pnpm](https://pnpm.io/) — Fast and efficient package manager
+- [Next.js](https://nextjs.org/) — React framework for building the website
+- [Tailwind CSS](https://tailwindcss.com/) — Utility-first CSS framework
+- [pnpm](https://pnpm.io/) — Fast and efficient package manager
 
 ### Backend integration
 
@@ -113,13 +113,13 @@ The theme explores the space between **what is real and what appears to be real*
 
 The CodeUtsava X experience draws inspiration from:
 
-* 🌀 **Illusion** — Distorting perception and challenging what the viewer expects
-* ⚡ **Glitch** — Digital errors transformed into visual expression
-* 🖥️ **Digital Reality** — Interfaces, systems, code, and technology as part of the visual language
-* 👁️ **Perception** — Making users question what they see
-* 🔀 **Distortion** — Breaking conventional layouts and interactions
-* 🧩 **Hidden Layers** — Revealing unexpected information and experiences
-* 💻 **Technology & Creativity** — Blending engineering with artistic expression
+- 🌀 **Illusion** — Distorting perception and challenging what the viewer expects
+- ⚡ **Glitch** — Digital errors transformed into visual expression
+- 🖥️ **Digital Reality** — Interfaces, systems, code, and technology as part of the visual language
+- 👁️ **Perception** — Making users question what they see
+- 🔀 **Distortion** — Breaking conventional layouts and interactions
+- 🧩 **Hidden Layers** — Revealing unexpected information and experiences
+- 💻 **Technology & Creativity** — Blending engineering with artistic expression
 
 ### The Experience
 
@@ -149,9 +149,9 @@ Follow the steps below to set up the CodeUtsava X website locally.
 
 Make sure the following tools are installed on your system.
 
-* [Node.js 24 LTS](https://nodejs.org/)
-* [pnpm 10.25.0](https://pnpm.io/installation)
-* [Git](https://git-scm.com/downloads)
+- [Node.js 24 LTS](https://nodejs.org/)
+- [pnpm 10.25.0](https://pnpm.io/installation)
+- [Git](https://git-scm.com/downloads)
 
 ### Installing pnpm
 
@@ -205,6 +205,12 @@ pnpm dev
 ```
 
 The website should now be available at `http://localhost:3000`.
+
+Format the repository with the shared four-space Prettier configuration:
+
+```sh
+pnpm format
+```
 
 Run the complete local quality check before opening a pull request:
 

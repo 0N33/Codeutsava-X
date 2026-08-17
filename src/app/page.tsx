@@ -11,19 +11,19 @@ import { StatsSection } from "@/components/sections/stats-section";
 import { TimelineSection } from "@/components/sections/timeline-section";
 
 export default function Home() {
-  return (
-    <main id="main-content" className="flex-1">
-      <HeroSection />
-      <StatsSection />
-      <AboutSection />
-      <SponsorsSection />
-      <TimelineSection />
-      <GuidelinesSection />
-      <PrizesSection />
-      <AnalyticsSection />
-      <ShortlistedTeamsSection />
-      <FaqSection />
-      <FinalCtaSection />
-    </main>
-  );
+    return (
+        <main id="main-content" className="flex-1">
+            <HeroSection />
+            <StatsSection />
+            <AboutSection />
+            <SponsorsSection />
+            <TimelineSection />
+            <GuidelinesSection />
+            <PrizesSection />
+            <AnalyticsSection />
+            <ShortlistedTeamsSection />
+            <FaqSection />
+            <FinalCtaSection />
+        </main>
+    );
 }
