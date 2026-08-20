@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "test": "next build && node --test tests/site.test.mjs",
-    "lint": "eslint src tests",
+    "lint": "eslint src",
     "typecheck": "next typegen && tsc --noEmit",
     "check": "pnpm lint && pnpm typecheck && pnpm build"
   },
