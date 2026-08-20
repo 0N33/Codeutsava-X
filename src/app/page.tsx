@@ -1,0 +1,22 @@
+import type { Metadata } from 'next';
+import { ExperienceShell } from '@/components/intro/ExperienceShell';
+import { GlitchverseHero } from '@/components/hero/GlitchverseHero';
+import { TimelineRoad } from '@/components/timeline/TimelineRoad';
+import { EventSections } from '@/components/sections/EventSections';
+
+export const metadata: Metadata = {
+  title: 'Codeutsava X.0 - Build Beyond the Screen',
+  description: 'Enter the Glitchverse at Codeutsava X.0, where ideas break the expected and compile into something real.',
+};
+
+export default function Home() {
+  return (
+    <ExperienceShell>
+      <div className='flex min-h-screen flex-col bg-black'>
+        <GlitchverseHero />
+        <TimelineRoad />
+        <EventSections />
+      </div>
+    </ExperienceShell>
+  );
+}
