@@ -23,9 +23,9 @@ function smoothScrollTo(targetSelector: string) {
     destinationY = window.scrollY + rect.top - offset - 8;
   }
 
-  // @ts-ignore - lenis might be globally present
+  // @ts-expect-error - lenis might be globally present
   if (window.lenis && typeof window.lenis.scrollTo === "function") {
-    // @ts-ignore
+    // @ts-expect-error - lenis might be globally present
     window.lenis.scrollTo(destinationY, {
       easing: (t: number) => 1 - Math.pow(1 - t, 3),
     });
@@ -208,6 +208,33 @@ const NavItem = ({
   );
 };
 
+const MobileNavLink = ({
+  href,
+  children,
+  setMobileOpen,
+}: {
+  href: string;
+  children: React.ReactNode;
+  setMobileOpen: (open: boolean) => void;
+}) => (
+  <a
+    href={href}
+    onClick={(e) => {
+      if (href.startsWith("#")) {
+        e.preventDefault();
+        smoothScrollTo(href);
+      }
+      setMobileOpen(false);
+    }}
+    className="block w-full px-6 py-4 text-[12px] font-black tracking-[0.15em] text-[#faeb92] border-b border-[#faeb9220] hover:bg-[#faeb9220] transition-colors uppercase text-center"
+    style={{
+      fontFamily: "var(--font-body)",
+    }}
+  >
+    {children}
+  </a>
+);
+
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
@@ -225,32 +252,6 @@ export function Navbar() {
       window.removeEventListener("resize", checkScreen);
     };
   }, []);
-
-  const MobileNavLink = ({
-    href,
-    children,
-  }: {
-    href: string;
-    children: React.ReactNode;
-  }) => (
-    <a
-      href={href}
-      onClick={(e) => {
-        if (href.startsWith("#")) {
-          e.preventDefault();
-          smoothScrollTo(href);
-        }
-
-        setMobileOpen(false);
-      }}
-      className="block w-full px-6 py-4 text-[12px] font-black tracking-[0.15em] text-[#faeb92] border-b border-[#faeb9220] hover:bg-[#faeb9220] transition-colors uppercase text-center"
-      style={{
-        fontFamily: "var(--font-body)",
-      }}
-    >
-      {children}
-    </a>
-  );
 
   return (
     <>
@@ -415,27 +416,27 @@ export function Navbar() {
             <div className="flex flex-col font-sans">
 
               {/* HOME */}
-              <MobileNavLink href="#top">
+              <MobileNavLink href="#top" setMobileOpen={setMobileOpen}>
                 HOME
               </MobileNavLink>
 
               {/* ABOUT US */}
-              <MobileNavLink href="#about">
+              <MobileNavLink href="#about" setMobileOpen={setMobileOpen}>
                 ABOUT US
               </MobileNavLink>
 
               {/* FAQ */}
-              <MobileNavLink href="#faq">
+              <MobileNavLink href="#faq" setMobileOpen={setMobileOpen}>
                 FAQ
               </MobileNavLink>
 
               {/* CONTACT US */}
-              <MobileNavLink href="#contact">
+              <MobileNavLink href="#contact" setMobileOpen={setMobileOpen}>
                 CONTACT US
               </MobileNavLink>
 
               {/* TEAM */}
-              <MobileNavLink href="/team">
+              <MobileNavLink href="/team" setMobileOpen={setMobileOpen}>
                 TEAM
               </MobileNavLink>
 
