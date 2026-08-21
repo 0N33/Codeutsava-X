@@ -10,7 +10,7 @@ export interface TimelineEvent {
   time: string;
   phase: string;
   phaseCode: string;
-  category: 'Registration' | 'Selection' | 'Challenge' | 'Hackathon';
+  category: 'Registration' | 'Selection' | 'Challenge' | 'Hackathon' | 'Finale';
   description: string;
   details: string[];
   xpIcon: 'notepad' | 'alert' | 'wizard' | 'cmd' | 'gear' | 'calendar' | 'cpu' | 'trophy';
