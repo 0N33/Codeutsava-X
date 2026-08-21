@@ -120,9 +120,9 @@ export function GlitchverseHero() {
           </div>
 
           <h1 className={styles.title} id="hero-title">
-            <span>BUILD</span>
-            <span>BEYOND THE</span>
-            <span className={styles.screenWord}>EXPECTED.</span>
+            <span>WELCOME TO</span>
+            <span>CODEUTSAVA X.0</span>
+            <span className={styles.screenWord}>CODE . INNOVATE . CELEBRATE</span>
           </h1>
 
           <div className={styles.copyFooter} id="join">
