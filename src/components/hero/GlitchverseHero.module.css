@@ -68,7 +68,7 @@
 .navbar {
   position: relative;
   z-index: 20;
-  height: 70px;
+  height: 82px;
   margin: 12px clamp(24px, 4vw, 72px) 0;
   padding: 0 18px;
   border-block: 1px solid rgba(250, 235, 146, 0.28);
@@ -159,49 +159,34 @@
 }
 
 .navLinks {
+  border: 1px solid rgba(250, 235, 146, 0.2);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
+  align-items: stretch;
+  background: #000000;
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.13em;
 }
 
 .navLinks a {
   position: relative;
-  padding: 8px 16px;
-  color: rgba(250, 235, 146, 0.85);
-  background: transparent;
-  border: none;
+  padding: 12px 18px;
+  color: rgba(250, 235, 146, 0.72);
   text-decoration: none;
-  transition: color 160ms ease;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.navLinks a+a {
+  border-left: 1px solid rgba(250, 235, 146, 0.16);
 }
 
 .navLinks a:hover,
 .navLinks a:focus-visible {
-  color: var(--bone);
-  text-shadow: 0 0 8px rgba(250, 235, 146, 0.5);
-}
-
-.navButton a {
-  padding: 12px 24px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(250, 235, 146, 0.25);
-  border-radius: 2px;
-  transition:
-    background-color 160ms ease,
-    color 160ms ease,
-    border-color 160ms ease;
-}
-
-.navButton a:hover,
-.navButton a:focus-visible {
   background: var(--bone);
   color: var(--black);
-  border-color: var(--bone);
-  text-shadow: none;
 }
 
 .navCta {
