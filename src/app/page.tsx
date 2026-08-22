@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <BackgroundVideo/>
-    <ExperienceShell>
-      <div className='flex min-h-screen flex-col bg-black'>
-        <GlitchverseHero />
+    <BackgroundVideo />
+      <ExperienceShell>
+        <div className='flex min-h-screen flex-col bg-transparent'>
+          <GlitchverseHero />
         <SponsorSection />
         <TimelineRoad />
         <EventSections />
