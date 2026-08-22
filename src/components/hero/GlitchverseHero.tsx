@@ -135,12 +135,12 @@ export function GlitchverseHero() {
 
         <div className={styles.visual} id="signal" aria-label="Interactive CRT transmission">
           <div className="flex flex-wrap items-center justify-center gap-6 mb-10 z-10">
-            <a href="#" className="gradient-button px-10 py-4 rounded font-mono font-bold text-sm tracking-widest text-white transition-transform hover:scale-105 active:scale-95">
+            <button className="gradient-button px-10 py-4 rounded font-mono font-bold text-sm tracking-widest text-white transition-transform hover:scale-105 active:scale-95">
               REGISTER
-            </a>
-            <a href="#" className="gradient-button-variant px-10 py-4 rounded font-mono font-bold text-sm tracking-widest text-white transition-transform hover:scale-105 active:scale-95">
+            </button>
+            <button className="gradient-button-variant px-10 py-4 rounded font-mono font-bold text-sm tracking-widest text-white transition-transform hover:scale-105 active:scale-95">
               COMING SOON
-            </a>
+            </button>
           </div>
 
           <span className={`${styles.codeFragment} ${styles.fragmentOne}`} aria-hidden="true">
