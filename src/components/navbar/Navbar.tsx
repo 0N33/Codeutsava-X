@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
@@ -283,9 +284,11 @@ export function Navbar() {
                   smoothScrollTo("#top");
                 }}
               >
-                <img
+                <Image
                   src="/images/codeutsava/codeutsava-logo.png"
                   alt="CodeUtsava Logo"
+                  width={52}
+                  height={52}
                   className="w-[52px] h-[52px] object-contain drop-shadow-[0_0_8px_rgba(255,95,207,0.5)]"
                 />
               </a>
@@ -331,9 +334,11 @@ export function Navbar() {
                 setMobileOpen(false);
               }}
             >
-              <img
+              <Image
                 src="/images/codeutsava/codeutsava-logo.png"
                 alt="CodeUtsava Logo"
+                width={44}
+                height={44}
                 className="w-[44px] h-[44px] object-contain drop-shadow-[0_0_8px_rgba(255,95,207,0.5)]"
               />
             </a>
@@ -361,9 +366,11 @@ export function Navbar() {
                   smoothScrollTo("#top");
                 }}
               >
-                <img
+                <Image
                   src="/images/codeutsava/tcp-logo.png"
                   alt="TCP Logo"
+                  width={52}
+                  height={52}
                   className="w-[52px] h-[52px] object-contain drop-shadow-[0_0_8px_rgba(255,95,207,0.5)]"
                 />
               </a>
@@ -376,9 +383,11 @@ export function Navbar() {
                 smoothScrollTo("#top");
               }}
             >
-              <img
+              <Image
                 src="/images/codeutsava/tcp-logo.png"
                 alt="TCP Logo"
+                width={44}
+                height={44}
                 className="w-[44px] h-[44px] object-contain drop-shadow-[0_0_8px_rgba(255,95,207,0.5)]"
               />
             </a>
