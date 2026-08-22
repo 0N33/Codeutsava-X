@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    
+    <BackgroundVideo/>
     <ExperienceShell>
       <div className='flex min-h-screen flex-col bg-black'>
         <GlitchverseHero />
