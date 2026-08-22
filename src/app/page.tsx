@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
+      <>
     <BackgroundVideo />
       <ExperienceShell>
         <div className='flex min-h-screen flex-col bg-transparent'>
@@ -22,6 +23,6 @@ export default function Home() {
         <EventSections />
       </div>
     </ExperienceShell>
-
+      </>
   );
 }
