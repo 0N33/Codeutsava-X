@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "../hero/GlitchverseHero.module.css";
 
 function smoothScrollTo(targetSelector: string) {
@@ -46,62 +47,9 @@ interface NavItemProps {
 const NavItem: React.FC<NavItemProps> = ({
   href,
   children,
-  delay = 0,
   target,
 }) => {
-  const containerRef = useRef<HTMLAnchorElement>(null);
   const router = useRouter();
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const purpleRects = containerRef.current.querySelectorAll(".purple-rect");
-    const pinkRects = containerRef.current.querySelectorAll(".pink-rect");
-    gsap.set([purpleRects, pinkRects], { xPercent: -100 });
-  }, []);
-
-  const handleMouseEnter = () => {
-    if (!containerRef.current) return;
-    const purpleRects = containerRef.current.querySelectorAll(".purple-rect");
-    const pinkRects = containerRef.current.querySelectorAll(".pink-rect");
-
-    gsap.to(purpleRects, {
-      duration: 0.5,
-      ease: "rough({ template: none.out, strength: 4, points: 20, taper: none, randomize: false, clamp: false })",
-      xPercent: 0,
-      stagger: 0.02,
-      overwrite: true,
-    });
-
-    gsap.to(pinkRects, {
-      duration: 0.5,
-      ease: "rough({ template: none.out, strength: 4, points: 20, taper: none, randomize: false, clamp: false })",
-      xPercent: 0,
-      stagger: 0.04,
-      overwrite: true,
-    });
-  };
-
-  const handleMouseLeave = () => {
-    if (!containerRef.current) return;
-    const purpleRects = containerRef.current.querySelectorAll(".purple-rect");
-    const pinkRects = containerRef.current.querySelectorAll(".pink-rect");
-
-    gsap.to(purpleRects, {
-      duration: 0.4,
-      ease: "rough({ template: none.out, strength: 5, points: 15, taper: none, randomize: false, clamp: false })",
-      xPercent: -100,
-      stagger: 0.03,
-      overwrite: true,
-    });
-
-    gsap.to(pinkRects, {
-      duration: 0.4,
-      ease: "rough({ template: none.out, strength: 5, points: 15, taper: none, randomize: false, clamp: false })",
-      xPercent: -100,
-      stagger: 0.01,
-      overwrite: true,
-    });
-  };
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (target === "_blank") {
@@ -451,9 +399,10 @@ export function Navbar({ variant = 'default' }: { variant?: 'default' | 'back-to
 
                 JOIN THE COMMUNITY
               </a>
-          </div>
-        </div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
