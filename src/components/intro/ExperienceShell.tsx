@@ -19,7 +19,6 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
   });
   const [ready, setReady] = useState(() => entered);
   const [entering, setEntering] = useState(false);
-  const [entered, setEntered] = useState(false);
   const compactModeRef = useRef(false);
 
   useEffect(() => {
