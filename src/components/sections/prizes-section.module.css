@@ -34,7 +34,7 @@
 }
 
 .prizes .heading h2 {
-  font-size: clamp(30px, 4vw, 56px);
+  font-size: clamp(28px, 4vw, 56px);
   animation: none;
   text-shadow: 3px 0 rgba(153, 41, 234, 0.24);
 }
@@ -243,7 +243,7 @@
 @media (max-width: 760px) {
   .prizes { padding: 36px 12px 22px; }
   .heading { margin-bottom: 12px; }
-  .prizes .heading h2 { font-size: clamp(27px, 9vw, 34px); }
+  .prizes .heading h2 { font-size: clamp(28px, 9vw, 34px); }
   .transmissionHeader { grid-template-columns: 1fr auto 1fr; padding: 6px 7px; text-align: left; }
   .transmissionHeader span { text-align: center; }
   .grid { grid-template-columns: 1fr; }

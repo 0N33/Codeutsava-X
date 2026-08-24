@@ -34,7 +34,7 @@
 }
 
 .guidelines .heading h2 {
-  font-size: clamp(32px, 4vw, 58px);
+  font-size: clamp(28px, 4vw, 56px);
   animation: none;
   text-shadow: 3px 0 rgba(153, 41, 234, 0.24);
 }

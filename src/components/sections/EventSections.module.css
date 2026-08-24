@@ -37,10 +37,12 @@
 }
 
 .aboutSection {
-  padding-bottom: clamp(42px, 6vw, 88px);
+  padding-top: clamp(34px, 4vw, 54px);
+  padding-bottom: clamp(34px, 4vw, 54px);
 }
 
 .faqPanel.aboutPanel {
+  max-width: 1120px;
   min-height: 0;
   background:
     radial-gradient(circle at 24% 48%, rgba(153, 41, 234, 0.22), transparent 30%),
@@ -72,20 +74,20 @@
 .aboutPanelContent {
   position: relative;
   z-index: 2;
-  padding: clamp(32px, 5vw, 72px);
+  padding: clamp(22px, 3vw, 42px);
 }
 
 .aboutGrid {
   display: grid;
-  grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
   align-items: center;
-  gap: clamp(42px, 7vw, 110px);
+  gap: clamp(28px, 4vw, 60px);
 }
 
 .aboutLogoStage {
   position: relative;
-  min-height: clamp(420px, 42vw, 600px);
-  padding: clamp(34px, 4vw, 58px);
+  min-height: clamp(300px, 30vw, 400px);
+  padding: clamp(24px, 3vw, 36px);
   border: 1px solid rgba(250, 235, 146, 0.24);
   display: grid;
   place-items: center;
@@ -131,7 +133,7 @@
 
 .aboutLogoFrame {
   position: relative;
-  width: min(100%, 430px);
+  width: min(100%, 310px);
   aspect-ratio: 1;
   border-radius: 50%;
   display: grid;
@@ -178,13 +180,16 @@
 }
 
 .aboutCopy {
+  display: grid;
   min-width: 0;
+  align-content: center;
+  gap: clamp(12px, 1.3vw, 18px);
 }
 
 .aboutCopy h2 {
-  margin: 0 0 clamp(34px, 4vw, 54px);
+  margin: 0;
   color: var(--cream);
-  font-size: clamp(58px, 7.4vw, 120px);
+  font-size: clamp(28px, 4vw, 56px);
   font-weight: 900;
   letter-spacing: -0.07em;
   line-height: 0.78;
@@ -193,74 +198,25 @@
 }
 
 .aboutBody {
-  max-width: 760px;
+  max-width: 680px;
   display: grid;
-  gap: 18px;
+  gap: clamp(14px, 1.4vw, 18px);
 }
 
 .aboutBody p {
   margin: 0;
-  color: rgba(250, 235, 146, 0.72);
-  font-size: clamp(14px, 1.2vw, 17px);
-  line-height: 1.72;
+  color: rgba(250, 235, 146, 0.88);
+  font-family: "Geist", var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.78;
+  word-spacing: 0.14em;
 }
 
 .aboutBody strong {
   color: var(--cream);
   font-weight: 800;
-}
-
-.prizeHighlight,
-.cashHighlight {
-  font-family: var(--font-mono);
-  font-weight: 800;
-}
-
-.prizeHighlight {
-  color: var(--pink);
-  text-shadow: 0 0 14px rgba(255, 95, 207, 0.3);
-}
-
-.cashHighlight {
-  color: var(--cream);
-  text-decoration: underline;
-  text-decoration-color: var(--pink);
-  text-underline-offset: 4px;
-}
-
-.aboutHighlights {
-  margin: clamp(30px, 4vw, 48px) 0 0;
-  padding: 0;
-  border-top: 1px solid rgba(250, 235, 146, 0.26);
-  list-style: none;
-}
-
-.aboutHighlights li {
-  min-height: 56px;
-  padding: 14px 10px;
-  border-bottom: 1px solid rgba(250, 235, 146, 0.18);
-  display: grid;
-  grid-template-columns: 38px 1fr;
-  align-items: center;
-  gap: 10px;
-  color: rgba(250, 235, 146, 0.88);
-  font-size: clamp(12px, 1vw, 15px);
-  font-weight: 700;
-  line-height: 1.35;
-  transition: color 180ms ease, background-color 180ms ease, padding-left 180ms ease;
-}
-
-.aboutHighlights li:hover {
-  padding-left: 16px;
-  background: rgba(255, 95, 207, 0.08);
-  color: var(--pink);
-}
-
-.aboutHighlights span {
-  color: var(--pink);
-  font-family: var(--font-mono);
-  font-size: 8px;
-  letter-spacing: 0.1em;
 }
 
 .faqPanel {
@@ -335,7 +291,7 @@
 
 .faqIntro h2 {
   margin: 0;
-  font-size: clamp(36px, 5.5vw, 90px);
+  font-size: clamp(28px, 4vw, 56px);
   font-weight: 900;
   letter-spacing: -0.07em;
   line-height: 0.72;
@@ -755,11 +711,11 @@
   }
 
   .aboutLogoStage {
-    min-height: clamp(340px, 68vw, 520px);
+    min-height: clamp(280px, 54vw, 360px);
   }
 
   .aboutLogoFrame {
-    width: min(72vw, 390px);
+    width: min(58vw, 280px);
   }
 
   .faqIntro {
@@ -785,7 +741,7 @@
 
 @media (max-width: 600px) {
   .faq.aboutSection {
-    padding: 64px 14px 38px;
+    padding: 26px 12px;
     background:
       radial-gradient(circle at 18% 24%, rgba(153, 41, 234, 0.18), transparent 38%),
       #000000;
@@ -797,20 +753,20 @@
   }
 
   .aboutPanelContent {
-    padding: 28px 18px 24px;
+    padding: 18px;
   }
 
   .aboutGrid {
-    gap: 42px;
+    gap: 24px;
   }
 
   .aboutLogoStage {
-    min-height: 300px;
-    padding: 34px 20px 42px;
+    min-height: 220px;
+    padding: 24px 16px 32px;
   }
 
   .aboutLogoFrame {
-    width: min(72vw, 280px);
+    width: min(56vw, 210px);
   }
 
   .aboutLogoStage > p {
@@ -820,19 +776,11 @@
   }
 
   .aboutCopy h2 {
-    margin-bottom: 30px;
-    font-size: clamp(54px, 18vw, 76px);
+    font-size: clamp(28px, 9vw, 34px);
   }
 
   .aboutBody p {
-    font-size: 13px;
-    line-height: 1.68;
-  }
-
-  .aboutHighlights li:hover {
-    padding-left: 10px;
-    background: transparent;
-    color: rgba(250, 235, 146, 0.88);
+    line-height: 1.7;
   }
 
   .faq,
@@ -886,7 +834,7 @@
   }
 
   .faqIntro h2 {
-    font-size: clamp(34px, 14vw, 52px);
+    font-size: clamp(28px, 9vw, 34px);
   }
 
   .faqPanel {
@@ -1005,7 +953,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aboutHighlights li,
   .faqItem button,
   .footerNav a,
   .socials a {
