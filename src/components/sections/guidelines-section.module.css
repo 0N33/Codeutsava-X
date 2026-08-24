@@ -183,7 +183,7 @@
   gap: clamp(18px, 4vw, 44px);
   margin-top: clamp(23px, 3.75vw, 40px);
   padding: clamp(16px, 2.25vw, 23px);
-  border-left: 1px solid var(--pink);
+  border-left: 3px solid var(--pink);
   background: linear-gradient(90deg, rgba(153, 41, 234, 0.18), rgba(255, 95, 207, 0.035));
   box-shadow: inset 20px 0 34px rgba(153, 41, 234, 0.06);
 }
