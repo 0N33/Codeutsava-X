@@ -7,8 +7,11 @@
 .bodyCopy {
   color: rgba(250, 235, 146, 0.72);
   font-family: var(--font-body);
-  font-size: clamp(14px, 1.2vw, 17px);
-  line-height: 1.72;
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  text-shadow: 8px 0 rgba(153, 41, 234, 0.34), -4px 0 rgba(255, 95, 207, 0.22);
+  animation: heading-jolt 4.8s steps(1, end) infinite;
 }
 
 .metricLabel {

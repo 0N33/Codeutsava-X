@@ -12,7 +12,7 @@
 .faq {
   position: relative;
   isolation: isolate;
-  padding: clamp(72px, 10vw, 150px) clamp(24px, 6vw, 96px);
+  padding: clamp(44px, 5vw, 72px) clamp(20px, 4vw, 64px);
   background:
     linear-gradient(rgba(250, 235, 146, 0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(250, 235, 146, 0.025) 1px, transparent 1px),
@@ -23,10 +23,10 @@
 
 .signalLine {
   position: absolute;
-  top: 30px;
-  right: clamp(24px, 6vw, 96px);
-  left: clamp(24px, 6vw, 96px);
-  padding-bottom: 13px;
+  top: 16px;
+  right: clamp(20px, 4vw, 64px);
+  left: clamp(20px, 4vw, 64px);
+  padding-bottom: 8px;
   border-bottom: 1px solid rgba(250, 235, 146, 0.2);
   display: flex;
   justify-content: space-between;
@@ -37,10 +37,12 @@
 }
 
 .aboutSection {
-  padding-bottom: clamp(42px, 6vw, 88px);
+  padding-top: clamp(34px, 4vw, 54px);
+  padding-bottom: clamp(34px, 4vw, 54px);
 }
 
 .faqPanel.aboutPanel {
+  max-width: 1120px;
   min-height: 0;
   background:
     radial-gradient(circle at 24% 48%, rgba(153, 41, 234, 0.22), transparent 30%),
@@ -72,20 +74,20 @@
 .aboutPanelContent {
   position: relative;
   z-index: 2;
-  padding: clamp(32px, 5vw, 72px);
+  padding: clamp(22px, 3vw, 42px);
 }
 
 .aboutGrid {
   display: grid;
-  grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+  grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
   align-items: center;
-  gap: clamp(42px, 7vw, 110px);
+  gap: clamp(28px, 4vw, 60px);
 }
 
 .aboutLogoStage {
   position: relative;
-  min-height: clamp(420px, 42vw, 600px);
-  padding: clamp(34px, 4vw, 58px);
+  min-height: clamp(300px, 30vw, 400px);
+  padding: clamp(24px, 3vw, 36px);
   border: 1px solid rgba(250, 235, 146, 0.24);
   display: grid;
   place-items: center;
@@ -131,7 +133,7 @@
 
 .aboutLogoFrame {
   position: relative;
-  width: min(100%, 430px);
+  width: min(100%, 310px);
   aspect-ratio: 1;
   border-radius: 50%;
   display: grid;
@@ -178,13 +180,16 @@
 }
 
 .aboutCopy {
+  display: grid;
   min-width: 0;
+  align-content: center;
+  gap: clamp(12px, 1.3vw, 18px);
 }
 
 .aboutCopy h2 {
-  margin: 0 0 clamp(34px, 4vw, 54px);
+  margin: 0;
   color: var(--cream);
-  font-size: clamp(58px, 7.4vw, 120px);
+  font-size: clamp(28px, 4vw, 56px);
   font-weight: 900;
   letter-spacing: -0.07em;
   line-height: 0.78;
@@ -193,16 +198,20 @@
 }
 
 .aboutBody {
-  max-width: 760px;
+  max-width: 680px;
   display: grid;
-  gap: 18px;
+  gap: clamp(14px, 1.4vw, 18px);
 }
 
 .aboutBody p {
   margin: 0;
-  color: rgba(250, 235, 146, 0.72);
-  font-size: clamp(14px, 1.2vw, 17px);
-  line-height: 1.72;
+  color: rgba(250, 235, 146, 0.88);
+  font-family: "Geist", var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.78;
+  word-spacing: 0.14em;
 }
 
 .aboutBody strong {
@@ -210,64 +219,11 @@
   font-weight: 800;
 }
 
-.prizeHighlight,
-.cashHighlight {
-  font-family: var(--font-mono);
-  font-weight: 800;
-}
-
-.prizeHighlight {
-  color: var(--pink);
-  text-shadow: 0 0 14px rgba(255, 95, 207, 0.3);
-}
-
-.cashHighlight {
-  color: var(--cream);
-  text-decoration: underline;
-  text-decoration-color: var(--pink);
-  text-underline-offset: 4px;
-}
-
-.aboutHighlights {
-  margin: clamp(30px, 4vw, 48px) 0 0;
-  padding: 0;
-  border-top: 1px solid rgba(250, 235, 146, 0.26);
-  list-style: none;
-}
-
-.aboutHighlights li {
-  min-height: 56px;
-  padding: 14px 10px;
-  border-bottom: 1px solid rgba(250, 235, 146, 0.18);
-  display: grid;
-  grid-template-columns: 38px 1fr;
-  align-items: center;
-  gap: 10px;
-  color: rgba(250, 235, 146, 0.88);
-  font-size: clamp(12px, 1vw, 15px);
-  font-weight: 700;
-  line-height: 1.35;
-  transition: color 180ms ease, background-color 180ms ease, padding-left 180ms ease;
-}
-
-.aboutHighlights li:hover {
-  padding-left: 16px;
-  background: rgba(255, 95, 207, 0.08);
-  color: var(--pink);
-}
-
-.aboutHighlights span {
-  color: var(--pink);
-  font-family: var(--font-mono);
-  font-size: 8px;
-  letter-spacing: 0.1em;
-}
-
 .faqPanel {
   position: relative;
   width: 100%;
   max-width: 1440px;
-  min-height: 820px;
+  min-height: 0;
   margin: 0 auto;
   overflow: hidden;
   border: 1px solid rgba(255, 95, 207, 0.7);
@@ -312,20 +268,20 @@
 .faqPanelContent {
   position: relative;
   z-index: 2;
-  padding: clamp(34px, 5vw, 72px);
+  padding: clamp(22px, 2.8vw, 38px);
 }
 
 .faqIntro {
   width: 100%;
-  margin: 0 0 clamp(42px, 6vw, 72px);
+  margin: 0 0 clamp(18px, 2.5vw, 28px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
-  gap: clamp(32px, 6vw, 90px);
+  gap: clamp(20px, 3vw, 44px);
 }
 
 .eyebrow {
-  margin: 0 0 18px;
+  margin: 0 0 9px;
   color: var(--pink);
   font-family: var(--font-mono);
   font-size: 9px;
@@ -335,7 +291,7 @@
 
 .faqIntro h2 {
   margin: 0;
-  font-size: clamp(72px, 11vw, 180px);
+  font-size: clamp(28px, 4vw, 56px);
   font-weight: 900;
   letter-spacing: -0.07em;
   line-height: 0.72;
@@ -345,10 +301,10 @@
 
 .introCopy {
   max-width: 520px;
-  margin: clamp(36px, 5vw, 64px) 0 0;
+  margin: clamp(12px, 1.8vw, 20px) 0 0;
   color: rgba(250, 235, 146, 0.66);
-  font-size: clamp(14px, 1.3vw, 18px);
-  line-height: 1.6;
+  font-size: clamp(12px, 1vw, 15px);
+  line-height: 1.45;
 }
 
 .introCopy strong {
@@ -357,12 +313,12 @@
 }
 
 .faqStatus {
-  min-width: 235px;
-  padding: 18px;
+  min-width: 190px;
+  padding: 12px;
   border: 1px solid rgba(250, 235, 146, 0.32);
   background: rgba(0, 0, 0, 0.58);
   display: grid;
-  gap: 13px;
+  gap: 8px;
   color: rgba(250, 235, 146, 0.64);
   font-family: var(--font-mono);
   font-size: 8px;
@@ -389,7 +345,7 @@
   width: 100%;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   align-items: start;
   border-top: 1px solid rgba(250, 235, 146, 0.28);
 }
@@ -401,22 +357,22 @@
 }
 
 .faqItem:nth-child(odd) {
-  border-right: 1px solid rgba(250, 235, 146, 0.22);
+  border-right: 0;
 }
 
 .faqItem button {
   width: 100%;
-  min-height: 92px;
-  padding: 22px clamp(18px, 2.5vw, 36px);
+  min-height: 48px;
+  padding: 10px clamp(14px, 1.8vw, 24px);
   border: 0;
   background: rgba(0, 0, 0, 0.24);
   color: var(--cream);
   display: grid;
-  grid-template-columns: 34px 1fr auto;
+  grid-template-columns: 28px 1fr auto;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
   font: inherit;
-  font-size: clamp(13px, 1.15vw, 17px);
+  font-size: clamp(12px, 0.95vw, 14px);
   font-weight: 800;
   line-height: 1.25;
   text-align: left;
@@ -461,13 +417,13 @@
 
 .toggle {
   font-family: var(--font-mono);
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1;
 }
 
 .answer {
-  padding: 0 clamp(24px, 4vw, 84px) 30px;
+  padding: 0 clamp(52px, 5vw, 68px) 12px;
   background: var(--pink);
   color: var(--black);
   animation: answerDecrypt 360ms steps(4, end);
@@ -476,8 +432,8 @@
 .answer p {
   max-width: 620px;
   margin: 0;
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 @keyframes faqJitter {
@@ -613,9 +569,13 @@
 
 .about h2 {
   margin: 0 0 26px;
-  font-size: clamp(34px, 4vw, 64px);
-  letter-spacing: -0.045em;
-  line-height: 0.95;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.1vw, 50px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 0.88;
+  text-transform: uppercase;
+  text-shadow: 3px 0 rgba(153, 41, 234, 0.42), -2px 0 rgba(255, 95, 207, 0.24);
 }
 
 .nitHeading {
@@ -623,6 +583,10 @@
   align-items: center;
   gap: clamp(20px, 3vw, 38px);
   margin-bottom: 26px;
+}
+
+.nitHeading > div {
+  min-width: 0;
 }
 
 .nitHeading img {
@@ -646,8 +610,10 @@
   max-width: 660px;
   margin: 0;
   color: rgba(250, 235, 146, 0.68);
+  font-family: var(--font-screen);
   font-size: clamp(13px, 1.1vw, 16px);
-  line-height: 1.72;
+  letter-spacing: 0.015em;
+  line-height: 1.68;
 }
 
 .mapLink {
@@ -680,7 +646,13 @@
 
 .footerNav a {
   margin-bottom: 15px;
-  font-size: 15px;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.8vw, 24px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 2px 0 rgba(153, 41, 234, 0.32);
 }
 
 .footerNav a:hover,
@@ -739,11 +711,11 @@
   }
 
   .aboutLogoStage {
-    min-height: clamp(340px, 68vw, 520px);
+    min-height: clamp(280px, 54vw, 360px);
   }
 
   .aboutLogoFrame {
-    width: min(72vw, 390px);
+    width: min(58vw, 280px);
   }
 
   .faqIntro {
@@ -769,7 +741,7 @@
 
 @media (max-width: 600px) {
   .faq.aboutSection {
-    padding: 64px 14px 38px;
+    padding: 26px 12px;
     background:
       radial-gradient(circle at 18% 24%, rgba(153, 41, 234, 0.18), transparent 38%),
       #000000;
@@ -781,20 +753,20 @@
   }
 
   .aboutPanelContent {
-    padding: 28px 18px 24px;
+    padding: 18px;
   }
 
   .aboutGrid {
-    gap: 42px;
+    gap: 24px;
   }
 
   .aboutLogoStage {
-    min-height: 300px;
-    padding: 34px 20px 42px;
+    min-height: 220px;
+    padding: 24px 16px 32px;
   }
 
   .aboutLogoFrame {
-    width: min(72vw, 280px);
+    width: min(56vw, 210px);
   }
 
   .aboutLogoStage > p {
@@ -804,19 +776,11 @@
   }
 
   .aboutCopy h2 {
-    margin-bottom: 30px;
-    font-size: clamp(54px, 18vw, 76px);
+    font-size: clamp(28px, 9vw, 34px);
   }
 
   .aboutBody p {
-    font-size: 13px;
-    line-height: 1.68;
-  }
-
-  .aboutHighlights li:hover {
-    padding-left: 10px;
-    background: transparent;
-    color: rgba(250, 235, 146, 0.88);
+    line-height: 1.7;
   }
 
   .faq,
@@ -825,11 +789,11 @@
   }
 
   .faq {
-    padding: 64px 14px;
+    padding: 38px 12px 20px;
     background:
       radial-gradient(circle at 88% 18%, rgba(153, 41, 234, 0.16), transparent 34%),
       #000000;
-    contain-intrinsic-size: 900px;
+    contain-intrinsic-size: 520px;
   }
 
   .faqPanel {
@@ -870,7 +834,7 @@
   }
 
   .faqIntro h2 {
-    font-size: clamp(62px, 22vw, 92px);
+    font-size: clamp(28px, 9vw, 34px);
   }
 
   .faqPanel {
@@ -879,16 +843,16 @@
   }
 
   .faqPanelContent {
-    padding: 28px 18px 22px;
+    padding: 16px 12px 14px;
   }
 
   .faqIntro {
     grid-template-columns: 1fr;
+    margin-bottom: 12px;
   }
 
   .faqStatus {
-    min-width: 0;
-    grid-template-columns: 1fr 1fr;
+    display: none;
   }
 
   .faqStatus span:last-child {
@@ -896,14 +860,40 @@
   }
 
   .faqItem button {
-    min-height: 80px;
-    grid-template-columns: 28px 1fr auto;
-    gap: 10px;
-    font-size: 12px;
+    min-height: 40px;
+    padding: 7px 9px;
+    grid-template-columns: 22px 1fr auto;
+    gap: 7px;
+    font-size: 10px;
+    line-height: 1.2;
   }
 
   .answer {
-    padding-inline: 52px 24px;
+    padding: 0 30px 9px 38px;
+  }
+
+  .answer p {
+    font-size: 9.5px;
+    line-height: 1.35;
+  }
+
+  .eyebrow {
+    margin-bottom: 6px;
+    font-size: 7px;
+  }
+
+  .introCopy {
+    margin-top: 8px;
+    font-size: 10.5px;
+    line-height: 1.35;
+  }
+
+  .fileNumber {
+    font-size: 7px;
+  }
+
+  .toggle {
+    font-size: 17px;
   }
 
   .footerTop {
@@ -929,6 +919,20 @@
     align-items: flex-start;
   }
 
+  .about h2 {
+    font-size: clamp(24px, 7.5vw, 30px);
+    letter-spacing: 0;
+  }
+
+  .about > p:not(.eyebrow) {
+    font-size: 11px;
+    line-height: 1.58;
+  }
+
+  .footerNav a {
+    font-size: 20px;
+  }
+
   .footerGrid {
     grid-template-columns: 1fr;
     gap: 38px;
@@ -949,7 +953,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aboutHighlights li,
   .faqItem button,
   .footerNav a,
   .socials a {
