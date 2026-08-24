@@ -85,7 +85,7 @@ export function GraphAnalytics({ data = DEFAULT_GROWTH_DATA, className = '' }: G
             <header className={styles.chartCardHeader}><p id="participation-chart-title" className={styles.metricLabel}><Activity size={19} /> Total participation</p><span className={styles.metricNote}>2016 - 2024</span></header>
             <div className={styles.chartFrame}>
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart key={hasEnteredViewport ? 'participation-revealed' : 'participation-pending'} data={chartData} layout="vertical" margin={{ top: 7, right: 14, bottom: 7, left: 0 }} accessibilityLayer={false} onMouseMove={(state : any) => { const point = state?.activePayload?.[0]?.payload as GraphDataPoint | undefined; setActiveParticipationLabel(point?.label ?? null); }} onMouseLeave={() => setActiveParticipationLabel(null)} style={{ outline: 'none' }}>
+                <BarChart key={hasEnteredViewport ? 'participation-revealed' : 'participation-pending'} data={chartData} layout="vertical" margin={{ top: 7, right: 14, bottom: 7, left: 0 }} accessibilityLayer={false} onMouseMove={(state : unknown) => { const point = state?.activePayload?.[0]?.payload as GraphDataPoint | undefined; setActiveParticipationLabel(point?.label ?? null); }} onMouseLeave={() => setActiveParticipationLabel(null)} style={{ outline: 'none' }}>
                   <defs><linearGradient id="participation-bars" x1="0" x2="1" y1="0" y2="0"><stop offset="0%" stopColor="#9929ea" /><stop offset="58%" stopColor="#c056f6" /><stop offset="100%" stopColor="#ff5fcf" /></linearGradient></defs>
                   <CartesianGrid horizontal={false} stroke="rgba(250,235,146,0.1)" strokeDasharray="3 6" />
                   <XAxis type="number" hide />
