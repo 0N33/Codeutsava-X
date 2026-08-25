@@ -17,10 +17,43 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
   const [heroMounted, setHeroMounted] = useState(false);
   const [ready, setReady] = useState(false);
   const [entering, setEntering] = useState(false);
+  const [returningToHero, setReturningToHero] = useState(false);
+  const skipIntroRef = useRef(false);
   const reducedMotionRef = useRef(false);
   const transitionTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
+    const skipIntro =
+      window.location.hash === "#top" ||
+      document.documentElement.dataset.heroReturn === "true";
+    skipIntroRef.current = skipIntro;
+
+    if (!skipIntro) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      reducedMotionRef.current = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      setHeroMounted(true);
+      setReady(true);
+      setReturningToHero(true);
+      setEntering(true);
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+      transitionTimerRef.current = window.setTimeout(() => {
+        setEntered(true);
+        setReturningToHero(false);
+        delete document.documentElement.dataset.heroReturn;
+        transitionTimerRef.current = null;
+      }, reducedMotionRef.current ? 180 : 640);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    if (skipIntroRef.current) return;
+
     const idleWindow = window as Window & {
       requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
       cancelIdleCallback?: (handle: number) => void;
@@ -42,6 +75,8 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
+    if (skipIntroRef.current) return;
+
     const compactQuery = window.matchMedia('(max-width: 760px), (hover: none) and (pointer: coarse)');
     const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const compact = compactQuery.matches || reducedMotionQuery.matches;
@@ -83,7 +118,7 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
 
   return (
     <div
-      className={`${styles.experience} ${entering ? styles.entering : ""} ${entered ? styles.entered : ""}`}
+      className={`${styles.experience} ${entering ? styles.entering : ""} ${entered ? styles.entered : ""} ${returningToHero ? styles.returning : ""}`}
     >
       <div className={styles.site}>{heroMounted ? children : null}</div>
       {!entered && (
@@ -94,6 +129,7 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
             <div className={styles.noise} aria-hidden="true" />
             <section
               className={styles.bios}
+              data-intro-content
               aria-label="Codeutsava X.0 startup screen"
             >
               <div className={styles.brand}>

@@ -32,6 +32,14 @@
   background: transparent;
   pointer-events: none;
 }
+.returning .bios,
+:global(html[data-hero-return="true"]) .bios {
+  display: none;
+}
+.returning .bootViewport,
+:global(html[data-hero-return="true"]) .bootViewport {
+  background: radial-gradient(ellipse 72% 64% at 50% 48%, #6f3ac4 0%, #321c88 48%, #080511 100%);
+}
 .entering .bootViewport {
   animation: glitchExit 640ms steps(1, end) forwards;
   pointer-events: none;

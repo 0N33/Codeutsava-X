@@ -35,6 +35,10 @@ html {
   scroll-behavior: smooth;
 }
 
+html[data-hero-return="true"] [data-intro-content] {
+  display: none !important;
+}
+
 body {
   min-width: 320px;
   margin: 0;

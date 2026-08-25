@@ -169,8 +169,10 @@ export function Navbar({ variant = "default" }: { variant?: "default" | "back-to
         <div className="flex items-center gap-4">
           {isBackToHome ? (
             <Link
-              href="/"
-              onClick={handleHomeClick}
+              href="/#top"
+              onClick={() => {
+                document.documentElement.dataset.heroReturn = "true";
+              }}
               className={`${styles.mobileOnly} min-h-11 items-center gap-2 border border-[#faeb9238] px-3 text-[10px] font-black tracking-[0.1em] text-[#faeb92] transition-colors hover:border-[#ff5fcf] hover:text-[#ff5fcf] focus-visible:border-[#ff5fcf] focus-visible:text-[#ff5fcf] whitespace-nowrap`}
               aria-label="Back to home"
             >
