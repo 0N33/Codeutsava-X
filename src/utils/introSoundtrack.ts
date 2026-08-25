@@ -101,21 +101,26 @@ class IntroSoundtrackEngine {
     return this.isMuted;
   }
 
-  public start() {
+  public start(fromBeginning: boolean = true) {
     const ctx = this.getContext();
     if (!ctx) return;
 
     this.isMuted = false;
-    if (this.isPlaying) return;
+    if (this.timerId !== null) {
+      window.clearTimeout(this.timerId);
+      this.timerId = null;
+    }
 
     this.isPlaying = true;
-    this.currentStep = 0;
-    this.nextStepTime = ctx.currentTime + 0.05;
+    if (fromBeginning) {
+      this.currentStep = 0;
+    }
+    this.nextStepTime = ctx.currentTime + 0.02;
 
     // Gentle fade-in
     if (this.masterGain) {
       this.masterGain.gain.setValueAtTime(0.0001, ctx.currentTime);
-      this.masterGain.gain.linearRampToValueAtTime(0.14, ctx.currentTime + 0.8);
+      this.masterGain.gain.linearRampToValueAtTime(0.14, ctx.currentTime + 0.5);
     }
 
     this.scheduleLoop();
@@ -126,16 +131,17 @@ class IntroSoundtrackEngine {
     if (!this.isPlaying) return;
     const ctx = this.getContext();
     if (ctx && this.masterGain) {
-      this.masterGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.4);
+      this.masterGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
     }
     setTimeout(() => {
       this.isPlaying = false;
+      this.currentStep = 0;
       if (this.timerId !== null) {
         window.clearTimeout(this.timerId);
         this.timerId = null;
       }
       this.notify();
-    }, 400);
+    }, 300);
   }
 
   public fadeOutAndStop(duration: number = 0.5) {
@@ -146,6 +152,7 @@ class IntroSoundtrackEngine {
     }
     setTimeout(() => {
       this.isPlaying = false;
+      this.currentStep = 0;
       if (this.timerId !== null) {
         window.clearTimeout(this.timerId);
         this.timerId = null;

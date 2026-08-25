@@ -101,21 +101,26 @@ class CyberSoundtrackEngine {
     return this.isMuted;
   }
 
-  public start() {
+  public start(fromBeginning: boolean = true) {
     const ctx = this.getContext();
     if (!ctx) return;
 
     this.isMuted = false;
-    if (this.isPlaying) return;
+    if (this.timerId !== null) {
+      window.clearTimeout(this.timerId);
+      this.timerId = null;
+    }
 
     this.isPlaying = true;
-    this.currentStep = 0;
-    this.nextStepTime = ctx.currentTime + 0.05;
+    if (fromBeginning) {
+      this.currentStep = 0;
+    }
+    this.nextStepTime = ctx.currentTime + 0.02;
 
     // Gentle fade-in
     if (this.masterGain) {
       this.masterGain.gain.setValueAtTime(0.0001, ctx.currentTime);
-      this.masterGain.gain.linearRampToValueAtTime(0.14, ctx.currentTime + 0.6);
+      this.masterGain.gain.linearRampToValueAtTime(0.14, ctx.currentTime + 0.3);
     }
 
     this.scheduleLoop();
@@ -126,16 +131,17 @@ class CyberSoundtrackEngine {
     if (!this.isPlaying) return;
     const ctx = this.getContext();
     if (ctx && this.masterGain) {
-      this.masterGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
+      this.masterGain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
     }
     setTimeout(() => {
       this.isPlaying = false;
+      this.currentStep = 0;
       if (this.timerId !== null) {
         window.clearTimeout(this.timerId);
         this.timerId = null;
       }
       this.notify();
-    }, 300);
+    }, 200);
   }
 
   private scheduleLoop = () => {
