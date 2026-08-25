@@ -129,10 +129,8 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
     retroAudio.playIntroPortalSound();
     introSoundtrack.fadeOutAndStop(0.4);
 
-    // Automatically start website background music on entering the site
-    window.setTimeout(() => {
-      cyberSoundtrack.start(true);
-    }, 450);
+    // Synchronously start website background music on user gesture so audio context is unlocked immediately
+    cyberSoundtrack.start(true);
 
     transitionTimerRef.current = window.setTimeout(() => {
       setEntered(true);
