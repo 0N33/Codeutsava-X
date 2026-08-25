@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import styles from "./ExperienceShell.module.css";
+import { retroAudio } from "@/utils/audioEffects";
 
 const GLYPHS = [..."CODEUTSAVA", " ", ..."X", ".O"];
 
@@ -110,11 +111,24 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
     if (!ready || entering) return;
     setHeroMounted(true);
     setEntering(true);
+    retroAudio.playIntroPortalSound();
     transitionTimerRef.current = window.setTimeout(() => {
       setEntered(true);
       transitionTimerRef.current = null;
     }, reducedMotionRef.current ? 180 : 640);
   };
+
+  useEffect(() => {
+    if (!ready || entered || entering) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        enter();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [ready, entered, entering]);
 
   return (
     <div

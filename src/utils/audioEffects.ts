@@ -113,6 +113,98 @@ class RetroAudioEngine {
     }
   }
 
+  // =========================================================================
+  // CINEMATIC INTRO PORTAL SOUND (Ascending Ethereal F# Maj9 / B Maj9 Warp Bloom)
+  // Plays a distinct, soothing cyberpunk chord when entering the site
+  // =========================================================================
+  public playIntroPortalSound() {
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    try {
+      const t = ctx.currentTime;
+      const duration = 1.6;
+
+      // 1. Master Output Gain
+      const masterGain = ctx.createGain();
+      masterGain.gain.setValueAtTime(0.0001, t);
+      masterGain.gain.linearRampToValueAtTime(0.2, t + 0.08);
+      masterGain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+      masterGain.connect(ctx.destination);
+
+      // 2. Spatial Delay Unit with Warm Filter
+      const delay = ctx.createDelay();
+      delay.delayTime.setValueAtTime(0.26, t);
+      const delayFeedback = ctx.createGain();
+      delayFeedback.gain.setValueAtTime(0.42, t);
+      const delayFilter = ctx.createBiquadFilter();
+      delayFilter.type = 'lowpass';
+      delayFilter.frequency.setValueAtTime(1600, t);
+
+      delay.connect(delayFilter);
+      delayFilter.connect(delayFeedback);
+      delayFeedback.connect(delay);
+      delayFeedback.connect(masterGain);
+
+      // 3. Ascending Ethereal F# Major 9th Arpeggio Chords (F#3, C#4, F#4, A#4, C#5, F#5, G#5)
+      const chordMidi = [54, 61, 66, 70, 73, 78, 80];
+      chordMidi.forEach((midi, i) => {
+        const freq = 440 * Math.pow(2, (midi - 69) / 12);
+        const osc = ctx.createOscillator();
+        const subHarmonic = ctx.createOscillator();
+        const noteGain = ctx.createGain();
+        const filter = ctx.createBiquadFilter();
+
+        const noteStart = t + i * 0.045;
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, noteStart);
+
+        subHarmonic.type = 'triangle';
+        subHarmonic.frequency.setValueAtTime(freq * 1.002, noteStart);
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(950, noteStart);
+        filter.frequency.exponentialRampToValueAtTime(3400, noteStart + 0.18);
+        filter.frequency.exponentialRampToValueAtTime(700, noteStart + duration);
+        filter.Q.setValueAtTime(1.1, noteStart);
+
+        noteGain.gain.setValueAtTime(0.0001, noteStart);
+        noteGain.gain.linearRampToValueAtTime(0.052, noteStart + 0.025);
+        noteGain.gain.exponentialRampToValueAtTime(0.0001, noteStart + 1.1);
+
+        osc.connect(filter);
+        subHarmonic.connect(filter);
+        filter.connect(noteGain);
+        noteGain.connect(masterGain);
+        noteGain.connect(delay);
+
+        osc.start(noteStart);
+        subHarmonic.start(noteStart);
+        osc.stop(noteStart + 1.2);
+        subHarmonic.stop(noteStart + 1.2);
+      });
+
+      // 4. Warm Sub-Bass Gravity Swell
+      const subOsc = ctx.createOscillator();
+      const subGain = ctx.createGain();
+      subOsc.type = 'sine';
+      subOsc.frequency.setValueAtTime(116, t);
+      subOsc.frequency.exponentialRampToValueAtTime(46, t + 0.5);
+
+      subGain.gain.setValueAtTime(0.001, t);
+      subGain.gain.linearRampToValueAtTime(0.14, t + 0.06);
+      subGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.9);
+
+      subOsc.connect(subGain);
+      subGain.connect(masterGain);
+
+      subOsc.start(t);
+      subOsc.stop(t + 0.95);
+    } catch {
+      // Audio context silenced or blocked
+    }
+  }
+
   // Backward compatibility alias for transition triggers
   public playGlitchTransition(stageIndex: number = 0) {
     this.playStageChime(stageIndex);
