@@ -12,6 +12,22 @@
   font-weight: 400;
 }
 
+@font-face {
+  font-family: "Array";
+  src: url("/fonts/Array-Regular.otf") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Satoshi Local";
+  src: url("/fonts/Satoshi-Medium.otf") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+}
+
 :root {
   --ink: #000000;
   --paper: #faeb92;
@@ -19,6 +35,8 @@
   --purple: #9929ea;
   --font-display: "Cyber City", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   --font-brand: "Cyber City", Impact, sans-serif;
+  --font-identity: "Array", "Satoshi", Arial, sans-serif;
+  --font-edition: "Satoshi Local", "Satoshi", Arial, sans-serif;
   --font-body: "Satoshi", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-satoshi: "Satoshi", sans-serif;
   --font-mono: "Courier New", Courier, monospace;
