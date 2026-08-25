@@ -87,13 +87,13 @@ export function ShortlistedTeams() {
       {/* Master Controls Bar - Locked State */}
       <div className={styles.controlsBar}>
         <div className={styles.statusIndicator}>
-          <span>TRANSMISSION // ENCRYPTED &amp; LOCKED</span>
+          <span>TRANSMISSION // LOCKED</span>
         </div>
 
         <div className={styles.btnGroup}>
           <div className={styles.lockedBadge}>
             <Lock size={11} className={styles.lockIcon} />
-            <span>ACCESS RESTRICTED // SOON</span>
+            <span>REVEALING SOON</span>
           </div>
         </div>
       </div>
@@ -127,7 +127,7 @@ export function ShortlistedTeams() {
                     isHovered={isHovered}
                   />
                   <ScrambleGlitchText
-                    text="[ ACCESS LOCKED ]"
+                    text="[ LOCKED ]"
                     isHovered={isHovered}
                     className={styles.unopenedLabel}
                   />

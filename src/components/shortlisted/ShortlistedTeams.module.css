@@ -101,6 +101,7 @@
   color: var(--pink);
   letter-spacing: 0.14em;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .btnGroup {
@@ -123,6 +124,7 @@
   align-items: center;
   gap: 6px;
   user-select: none;
+  white-space: nowrap;
 }
 
 .lockIcon {
