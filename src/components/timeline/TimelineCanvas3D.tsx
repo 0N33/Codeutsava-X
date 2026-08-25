@@ -7,7 +7,6 @@ import { retroAudio } from '@/utils/audioEffects';
 interface TimelineCanvas3DProps {
   activeEventIndex: number;
   onSelectEvent: (index: number) => void;
-  onOpenDialog: (event: TimelineEvent) => void;
   scrollProgress: number;
   setScrollProgress: (progress: number) => void;
 }
@@ -25,7 +24,6 @@ interface Particle {
 export const TimelineCanvas3D: React.FC<TimelineCanvas3DProps> = ({
   activeEventIndex,
   onSelectEvent,
-  onOpenDialog,
   scrollProgress
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -57,11 +55,6 @@ export const TimelineCanvas3D: React.FC<TimelineCanvas3DProps> = ({
   useEffect(() => {
     onSelectEventRef.current = onSelectEvent;
   }, [onSelectEvent]);
-
-  const onOpenDialogRef = useRef(onOpenDialog);
-  useEffect(() => {
-    onOpenDialogRef.current = onOpenDialog;
-  }, [onOpenDialog]);
 
   // Generate ambient particle cloud
   const particlesRef = useRef<Particle[]>([]);
@@ -863,22 +856,16 @@ export const TimelineCanvas3D: React.FC<TimelineCanvas3DProps> = ({
   };
 
   const handleTouchEnd = () => {
-    const elapsed = Date.now() - touchStartPosRef.current.time;
-    if (elapsed < 350 && hoveredNodeIndexRef.current !== null) {
-      const selected = TIMELINE_EVENTS[hoveredNodeIndexRef.current];
+    // Stage navigation on touch without popup modal
+    if (hoveredNodeIndexRef.current !== null) {
       onSelectEvent(hoveredNodeIndexRef.current);
-      onOpenDialog(selected);
-      retroAudio.playXPDing();
     }
   };
 
-  // Canvas Click: Open XP Dialog
+  // Canvas Click: Only select node without popup modal
   const handleClick = () => {
     if (hoveredNodeIndexRef.current !== null) {
-      const selected = TIMELINE_EVENTS[hoveredNodeIndexRef.current];
       onSelectEvent(hoveredNodeIndexRef.current);
-      onOpenDialog(selected);
-      retroAudio.playXPDing();
     }
   };
 
@@ -899,7 +886,7 @@ export const TimelineCanvas3D: React.FC<TimelineCanvas3DProps> = ({
       tabIndex={0}
       role="button"
       aria-label="3D Timeline Road Interactive Canvas"
-      className="w-full h-full absolute inset-0 cursor-crosshair select-none bg-[#020104] touch-pan-y"
+      className="w-full h-full absolute inset-0 cursor-default select-none bg-[#020104] touch-pan-y"
     >
       <canvas ref={canvasRef} className="w-full h-full block" />
 
@@ -918,14 +905,13 @@ export const TimelineCanvas3D: React.FC<TimelineCanvas3DProps> = ({
           >
             {hoveredEvent.lane.toUpperCase()} LANE
           </span>
-          <span className="text-yellow-300 font-bold ml-1 animate-pulse">[ Click to open XP Dialog ]</span>
         </div>
       )}
 
       {/* Mobile / Android: Very Small & Compact Stage Indicator Pill */}
       {hoveredEvent && (
         <div
-          className="flex sm:hidden absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 backdrop-blur-md border px-3 py-1 rounded-full shadow-[0_0_12px_rgba(255,95,207,0.3)] items-center justify-center gap-1 text-[11px] font-mono pointer-events-none transition-all z-30 max-w-[90vw] whitespace-nowrap overflow-hidden"
+          className="flex sm:hidden absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/90 backdrop-blur-md border px-3.5 py-1.5 rounded-full shadow-[0_0_12px_rgba(255,95,207,0.3)] items-center justify-center gap-2 text-[11px] font-mono pointer-events-none transition-all z-30 max-w-[90vw] whitespace-nowrap overflow-hidden"
           style={{ borderColor: hoveredEvent.accentColor }}
         >
           <span className="text-[#FAEB92] font-bold shrink-0">{hoveredEvent.stageCode}:</span>

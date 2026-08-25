@@ -3,9 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { TimelineEvent, TIMELINE_EVENTS } from '@/data/timelineEvents';
 import { TimelineCanvas3D } from './TimelineCanvas3D';
-import { WindowsXPDialog } from './WindowsXPDialog';
 import { retroAudio } from '@/utils/audioEffects';
-import { AnimatePresence, motion } from 'framer-motion';
 import {
   Volume2,
   VolumeX,
@@ -40,7 +38,6 @@ const GlitchText: React.FC<GlitchTextProps> = ({ text, className = '' }) => {
 export const TimelineRoad: React.FC = () => {
   const stickyContainerRef = useRef<HTMLDivElement | null>(null);
   const [activeEventIndex, setActiveEventIndex] = useState<number>(0);
-  const [selectedModalEvent, setSelectedModalEvent] = useState<TimelineEvent | null>(null);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [isMuted, setIsMuted] = useState<boolean>(retroAudio.getMuted());
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -97,11 +94,6 @@ export const TimelineRoad: React.FC = () => {
     setActiveEventIndex(prev => prev === index ? prev : index);
   }, []);
 
-  const handleOpenDialog = React.useCallback((event: TimelineEvent) => {
-    setSelectedModalEvent(event);
-    retroAudio.playXPDing();
-  }, []);
-
   const toggleMute = () => {
     const nextMuted = retroAudio.toggleMute();
     setIsMuted(nextMuted);
@@ -138,7 +130,6 @@ export const TimelineRoad: React.FC = () => {
         <TimelineCanvas3D
           activeEventIndex={activeEventIndex}
           onSelectEvent={handleSelectEvent}
-          onOpenDialog={handleOpenDialog}
           scrollProgress={scrollProgress}
           setScrollProgress={setScrollProgress}
         />
@@ -208,45 +199,6 @@ export const TimelineRoad: React.FC = () => {
         {/* Empty bottom spacer for pristine clean view */}
         <div className="relative z-40 w-full pointer-events-none pb-4" />
       </div>
-
-      {/* =========================================================================
-         CLICK-ACTIVATED WINDOWS XP POPUP MODAL
-         ========================================================================= */}
-      <AnimatePresence>
-        {selectedModalEvent && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setSelectedModalEvent(null)}
-            role="presentation"
-            className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md cursor-pointer"
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              role="presentation"
-              className="cursor-default w-full max-w-[600px]"
-            >
-              <WindowsXPDialog
-                event={selectedModalEvent}
-                isFloatingModal={true}
-                onClose={() => setSelectedModalEvent(null)}
-                onSelectNext={
-                  activeEventIndex < TIMELINE_EVENTS.length - 1
-                    ? () => handleSelectEvent(activeEventIndex + 1)
-                    : undefined
-                }
-                onSelectPrev={
-                  activeEventIndex > 0
-                    ? () => handleSelectEvent(activeEventIndex - 1)
-                    : undefined
-                }
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
