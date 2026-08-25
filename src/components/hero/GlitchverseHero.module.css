@@ -245,38 +245,42 @@
 @media (prefers-reduced-motion: reduce) { .pagerViewport, .identity, .wordmark, .wordmark::before, .wordmark::after, .screenGlitchBand, .editionCycle, .editionCycle::before, .editionCycle::after, .editionCycle > span, .editionCycle > span::before, .editionCycle > span::after { animation:none; } .wordmark::before, .wordmark::after, .screenGlitchBand, .editionCycle > span::before, .editionCycle > span::after { display:none; } .editionDas, .editionTen { display:none; } }
 
 .heroMusicButton {
-  position: absolute;
-  right: clamp(16px, 3.8vw, 44px);
-  bottom: clamp(34px, 5.2vh, 46px);
-  z-index: 35;
+  position: fixed;
+  right: clamp(16px, 3vw, 36px);
+  bottom: clamp(20px, 3vh, 32px);
+  z-index: 90;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  background: rgba(14, 7, 26, 0.85);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 95, 207, 0.45);
+  width: 46px;
+  height: 46px;
+  background: rgba(14, 7, 26, 0.88);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 95, 207, 0.55);
   border-radius: 50%;
   color: #faeb92;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(255, 95, 207, 0.25), inset 0 0 10px rgba(153, 41, 234, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(255, 95, 207, 0.35), inset 0 0 10px rgba(153, 41, 234, 0.25);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .heroMusicButton:hover {
-  background: rgba(153, 41, 234, 0.35);
+  background: rgba(153, 41, 234, 0.45);
   border-color: #faeb92;
   color: #ff5fcf;
-  box-shadow: 0 0 25px rgba(250, 235, 146, 0.45);
-  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7), 0 0 28px rgba(250, 235, 146, 0.5);
+  transform: translateY(-2px) scale(1.08);
+}
+
+.heroMusicButton:active {
+  transform: scale(0.96);
 }
 
 @media (max-width: 767px) {
   .heroMusicButton {
-    bottom: clamp(38px, 6vh, 48px);
-    right: 14px;
-    width: 38px;
-    height: 38px;
+    bottom: 20px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
   }
 }
