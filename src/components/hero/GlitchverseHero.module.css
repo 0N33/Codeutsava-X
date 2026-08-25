@@ -1,7 +1,7 @@
 .hero {
   position: relative; isolation: isolate; display: grid; grid-template-rows: auto 1fr auto;
   min-height: 100svh; overflow: hidden; color: #faeb92;
-  background: linear-gradient(180deg, rgba(3,1,8,.08), rgba(3,1,8,.42) 70%, rgba(3,1,8,.88)), radial-gradient(circle at 50% 68%, rgba(255,95,207,.14), transparent 42%);
+  background: linear-gradient(180deg, rgba(3,1,8,.05), rgba(3,1,8,.3) 70%, rgba(3,1,8,.74)), radial-gradient(circle at 50% 68%, rgba(255,95,207,.12), transparent 42%);
 }
 .ambientLight { position: absolute; z-index: -1; inset: 14% 8% 5%; background: radial-gradient(circle at 50% 48%, rgba(153,41,234,.18), transparent 38%); filter: blur(24px); pointer-events: none; }
 .noise { position: absolute; z-index: 3; inset: 0; opacity: .045; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"); }
@@ -36,7 +36,7 @@
     inset 0 0 0 2px rgba(153,41,234,.09),
     inset 0 -10px 16px rgba(0,0,0,.48),
     0 0 0 1px rgba(153,41,234,.3);
-  filter: drop-shadow(0 4px 0 #45204d) drop-shadow(0 9px 0 #120814) drop-shadow(0 19px 26px rgba(0,0,0,.62));
+  filter: drop-shadow(0 2px 0 #45204d) drop-shadow(0 4px 0 rgba(18,8,20,.76)) drop-shadow(0 8px 10px rgba(0,0,0,.3));
   transform: perspective(1400px) rotateX(1.6deg);
   transform-origin: center bottom;
   transform-style: preserve-3d;
@@ -180,7 +180,7 @@
   .ambientLight { inset: 18% 0 10%; filter: blur(16px); }
   .heroStage { width: min(calc(100% - 20px),540px); padding: clamp(18px,4svh,34px) 0 max(24px,env(safe-area-inset-bottom)); justify-content: center; }
   .eyebrow { margin-bottom: 10px; font-size: clamp(22px,6.8vw,32px); letter-spacing: .08em; line-height: 1; text-wrap: balance; }
-  .pagerShell { width: min(100%,94vw,520px); height: clamp(84px,19vw,116px); aspect-ratio: auto; padding: 8px 12px 16px; border-radius: 0; filter: drop-shadow(0 3px 0 #45204d) drop-shadow(0 7px 0 rgba(5,2,7,.94)) drop-shadow(0 14px 18px rgba(0,0,0,.54)); transform: perspective(900px) rotateX(1.4deg); }
+  .pagerShell { width: min(100%,94vw,520px); height: clamp(84px,19vw,116px); aspect-ratio: auto; padding: 8px 12px 16px; border-radius: 0; filter: drop-shadow(0 2px 0 #45204d) drop-shadow(0 4px 0 rgba(5,2,7,.76)) drop-shadow(0 7px 9px rgba(0,0,0,.3)); transform: perspective(900px) rotateX(1.4deg); }
   .pagerShell::before { inset: 3px; border-radius: 0; }
   .pagerShell::after { height: 14px; }
   .pagerTopRidge { top: 5px; right: 18px; gap: 4px; }
