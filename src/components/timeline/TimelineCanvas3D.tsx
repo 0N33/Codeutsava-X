@@ -221,13 +221,14 @@ export const TimelineCanvas3D: React.FC<TimelineCanvas3DProps> = ({
         : Math.max(520, Math.min(760, width * 0.48));
       const laneOffset = isMobile ? roadWidth * 0.16 : roadWidth / 3;
 
-      // Smooth camera interpolation
-      cameraZRef.current += (targetZRef.current - cameraZRef.current) * (isMobile ? 0.11 : 0.085);
+      // Smooth camera interpolation with adaptive responsiveness on touch
+      const lerpFactor = isMobile ? 0.14 : 0.085;
+      cameraZRef.current += (targetZRef.current - cameraZRef.current) * lerpFactor;
 
-      // Line-crossing stage detection
+      // Centered stage detection for natural mobile scrolling
       const physicalStageIdx = Math.max(0, Math.min(
         TIMELINE_EVENTS.length - 1,
-        Math.floor((cameraZRef.current + CAMERA_VIEW_DISTANCE + STAGE_SPACING * 0.15) / STAGE_SPACING)
+        Math.round((cameraZRef.current + CAMERA_VIEW_DISTANCE) / STAGE_SPACING)
       ));
 
       if (physicalStageIdx !== prevReportedStageRef.current) {

@@ -43,6 +43,16 @@ export const TimelineRoad: React.FC = () => {
   const [selectedModalEvent, setSelectedModalEvent] = useState<TimelineEvent | null>(null);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [isMuted, setIsMuted] = useState<boolean>(retroAudio.getMuted());
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // STICKY SCROLL PROGRESS TRACKING
   useEffect(() => {
@@ -114,12 +124,12 @@ export const TimelineRoad: React.FC = () => {
   };
 
   return (
-    // Sticky scroll container with runway for all 9 stages + empty space
+    // Sticky scroll container with optimized runway for all 9 stages
     <section
       id="timeline"
       ref={stickyContainerRef}
       className="relative w-full bg-transparent"
-      style={{ height: `${(TIMELINE_EVENTS.length + 2.5) * 75}vh` }}
+      style={{ height: `${isMobile ? (TIMELINE_EVENTS.length + 1.2) * 38 : (TIMELINE_EVENTS.length + 2.5) * 75}vh` }}
     >
       {/* FULLSCREEN PINNED STICKY VIEWPORT (100vw x 100vh) */}
       <div className="sticky top-0 w-full h-[100svh] overflow-hidden flex flex-col justify-between select-none">
