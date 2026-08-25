@@ -75,7 +75,7 @@ export function GlitchverseHero() {
         </div>
       </section>
 
-      {/* Floating Cyber Music Indicator / Toggle on the Landing Page */}
+      {/* Floating Cyber Music Indicator / Toggle on the Landing Page (Logo Only) */}
       <button
         type="button"
         onClick={toggleMusic}
@@ -83,24 +83,18 @@ export function GlitchverseHero() {
         title={isPlaying ? "Mute Background Music" : "Play Background Music"}
         aria-label={isPlaying ? "Mute Background Music" : "Play Background Music"}
       >
-        <div className={styles.soundWaveBars}>
-          <span className={`${styles.waveBar} ${isPlaying ? styles.barAnim1 : ""}`} />
-          <span className={`${styles.waveBar} ${isPlaying ? styles.barAnim2 : ""}`} />
-          <span className={`${styles.waveBar} ${isPlaying ? styles.barAnim3 : ""}`} />
-        </div>
         {isPlaying ? (
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.musicSvg}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M11 5L6 9H2v6h4l5 4V5z" />
             <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
           </svg>
         ) : (
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.musicSvg}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M11 5L6 9H2v6h4l5 4V5z" />
             <line x1="23" y1="9" x2="17" y2="15" />
             <line x1="17" y1="9" x2="23" y2="15" />
           </svg>
         )}
-        <span className={styles.heroMusicLabel}>{isPlaying ? "MUSIC: ON" : "MUSIC: OFF"}</span>
       </button>
 
       <div className={styles.bottomRail} aria-hidden="true">
