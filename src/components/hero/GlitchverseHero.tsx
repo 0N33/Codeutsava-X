@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { Navbar } from "@/components/navbar/Navbar";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { PearlButton } from "@/components/ui/pearl-button";
-import heroWordmark from "../../../public/images/codeutsava/hero-wordmark.png";
 import styles from "./GlitchverseHero.module.css";
 
 const registrationUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfHv8OJ7jkp9thPyPx1HrWJNPoGZ2z7FaFtIqpz7lO3dIqqgg/viewform?pli=1";
@@ -18,16 +16,27 @@ export function GlitchverseHero() {
 
       <section className={styles.heroStage} aria-labelledby="hero-title">
         <p className={styles.eyebrow}>WELCOME TO</p>
-        <h1 className={styles.identity} id="hero-title" aria-label="CodeUtsava X point zero, tenth edition">
-          <span className={styles.logoWrap}>
-            <Image src={heroWordmark} alt="CodeUtsava" priority sizes="(max-width: 768px) 72vw, 66vw" />
-          </span>
-          <span className={styles.editionCycle} aria-hidden="true">
-            <span className={styles.editionX}>X.0</span>
-            <span className={styles.editionDas} lang="hi">दस</span>
-            <span className={styles.editionTen}>10</span>
-          </span>
-        </h1>
+
+        <div className={styles.pagerShell}>
+          <span className={styles.pagerTopRidge} aria-hidden="true"><i /><i /><i /></span>
+          <span className={styles.pagerSpeaker} aria-hidden="true"><i /><i /><i /><i /><i /></span>
+          <span className={styles.pagerControls} aria-hidden="true"><i /><i /></span>
+
+          <div className={styles.pagerViewport}>
+            <span className={styles.screenScanlines} aria-hidden="true" />
+            <span className={`${styles.screenGlitchBand} ${styles.screenGlitchBandTop}`} aria-hidden="true" />
+            <span className={`${styles.screenGlitchBand} ${styles.screenGlitchBandBottom}`} aria-hidden="true" />
+
+            <h1 className={styles.identity} id="hero-title" aria-label="CodeUtsava X point zero, tenth edition">
+              <span className={styles.wordmark} data-text="CODEUTSAVA">CODEUTSAVA</span>
+              <span className={styles.editionCycle} aria-hidden="true">
+                <span className={styles.editionX} data-text="X.0">X.0</span>
+                <span className={styles.editionDas} data-text="दस" lang="hi">दस</span>
+                <span className={styles.editionTen} data-text="10">10</span>
+              </span>
+            </h1>
+          </div>
+        </div>
 
         <p className={styles.tagline}>CODE. INNOVATE. CELEBRATE.</p>
         <p className={styles.eventLine}>NIT RAIPUR&apos;S FLAGSHIP TECH CELEBRATION&nbsp; // &nbsp;10TH EDITION</p>

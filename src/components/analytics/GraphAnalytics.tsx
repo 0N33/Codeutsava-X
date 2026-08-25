@@ -50,14 +50,9 @@ export function GraphAnalytics({ data = DEFAULT_GROWTH_DATA, className = '' }: G
       }
     }, { threshold: 0.28 });
 
-      <div className="relative mx-auto max-w-7xl">
-        <div className="mb-10 flex flex-col gap-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            {/* <p className="mb-3 flex items-center gap-2 font-mono text-[10px] tracking-[0.32em] text-cyan-200/80"><Zap className="h-3.5 w-3.5" /> LIVE ARCHIVE / 2016—2024</p> */}
-            <h2 id="analytics-title" data-text="GRAPH AND ANALYTICS." className={`${styles.sponsorHeading} uppercase leading-[.85]`}>GRAPH AND ANALYTICS.</h2>
-          </div>
-          <p className="max-w-sm border-l border-[#ff5fcf]/60 pl-4 font-mono text-xs leading-relaxed text-white/60">Hover or select any signal point to inspect how the Codeutsava universe keeps expanding.</p>
-        </div>
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section ref={sectionRef} id="analytics" className={`${styles.section} ${className}`} aria-labelledby="analytics-title">
@@ -90,7 +85,18 @@ export function GraphAnalytics({ data = DEFAULT_GROWTH_DATA, className = '' }: G
             <header className={styles.chartCardHeader}><p id="participation-chart-title" className={styles.metricLabel}><Activity size={19} /> Total participation</p><span className={styles.metricNote}>2016 - 2024</span></header>
             <div className={styles.chartFrame}>
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart key={hasEnteredViewport ? 'participation-revealed' : 'participation-pending'} data={chartData} layout="vertical" margin={{ top: 7, right: 14, bottom: 7, left: 0 }} accessibilityLayer={false} onMouseMove={(state : any) => { const point = state?.activePayload?.[0]?.payload as GraphDataPoint | undefined; setActiveParticipationLabel(point?.label ?? null); }} onMouseLeave={() => setActiveParticipationLabel(null)} style={{ outline: 'none' }}>
+                <BarChart
+                  key={hasEnteredViewport ? 'participation-revealed' : 'participation-pending'}
+                  data={chartData}
+                  layout="vertical"
+                  margin={{ top: 7, right: 14, bottom: 7, left: 0 }}
+                  accessibilityLayer={false}
+                  onMouseMove={(state) => {
+                    setActiveParticipationLabel(state.activeLabel == null ? null : String(state.activeLabel));
+                  }}
+                  onMouseLeave={() => setActiveParticipationLabel(null)}
+                  style={{ outline: 'none' }}
+                >
                   <defs><linearGradient id="participation-bars" x1="0" x2="1" y1="0" y2="0"><stop offset="0%" stopColor="#9929ea" /><stop offset="58%" stopColor="#c056f6" /><stop offset="100%" stopColor="#ff5fcf" /></linearGradient></defs>
                   <CartesianGrid horizontal={false} stroke="rgba(250,235,146,0.1)" strokeDasharray="3 6" />
                   <XAxis type="number" hide />
