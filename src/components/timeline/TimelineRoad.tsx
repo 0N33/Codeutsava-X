@@ -8,7 +8,8 @@ import { retroAudio } from '@/utils/audioEffects';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   Volume2,
-  VolumeX
+  VolumeX,
+  FastForward
 } from 'lucide-react';
 
 interface GlitchTextProps {
@@ -97,6 +98,21 @@ export const TimelineRoad: React.FC = () => {
     if (!nextMuted) retroAudio.playXPDing();
   };
 
+  const handleSkipSection = () => {
+    if (!stickyContainerRef.current) return;
+    const nextEl = stickyContainerRef.current.nextElementSibling;
+    if (nextEl) {
+      nextEl.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      const rect = stickyContainerRef.current.getBoundingClientRect();
+      window.scrollTo({
+        top: window.scrollY + rect.bottom,
+        behavior: 'smooth'
+      });
+    }
+    retroAudio.playXPDing();
+  };
+
   return (
     // Sticky scroll container with runway for all 9 stages + empty space
     <section
@@ -142,8 +158,21 @@ export const TimelineRoad: React.FC = () => {
             </h2>
           </div>
 
-          {/* Right Sleek Purple Volume Toggle Button */}
-          <div className="pointer-events-auto">
+          {/* Right Controls: Skip Section Button + Volume Toggle Button */}
+          <div className="pointer-events-auto flex items-center gap-2 sm:gap-3">
+            {/* Skip Section Button */}
+            <button
+              type="button"
+              onClick={handleSkipSection}
+              className="h-10 px-3 sm:px-4 rounded-xl flex items-center gap-1.5 sm:gap-2 transition-all duration-300 cursor-pointer border shadow-lg bg-[#9929EA]/25 text-[#FAEB92] border-[#FF5FCF]/50 hover:bg-[#9929EA]/40 hover:scale-105 shadow-[0_0_20px_rgba(153,41,234,0.4)] text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider"
+              title="Skip Timeline Section"
+              aria-label="Skip Timeline Section"
+            >
+              <span>SKIP</span>
+              <FastForward className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FF5FCF] drop-shadow-[0_0_8px_#FF5FCF]" />
+            </button>
+
+            {/* Sleek Purple Volume Toggle Button */}
             <button
               type="button"
               onClick={toggleMute}
