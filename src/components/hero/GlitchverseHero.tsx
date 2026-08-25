@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { Navbar } from "@/components/navbar/Navbar";
-import { AntiMetalButton } from "@/components/ui/anti-metal-button";
-import { PearlButton } from "@/components/ui/pearl-button";
+import { GlitchButton } from "@/components/ui/glitch-button";
 import styles from "./GlitchverseHero.module.css";
 
 const registrationUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfHv8OJ7jkp9thPyPx1HrWJNPoGZ2z7FaFtIqpz7lO3dIqqgg/viewform?pli=1";
@@ -42,12 +42,21 @@ export function GlitchverseHero() {
         <p className={styles.eventLine}>NIT RAIPUR&apos;S FLAGSHIP TECH CELEBRATION&nbsp; // &nbsp;10TH EDITION</p>
 
         <div className={styles.heroActions} id="join">
-          <PearlButton
+          <GlitchButton
             label="REGISTER NOW"
             onClick={() => window.open(registrationUrl, "_blank", "noopener,noreferrer")}
           />
-          <AntiMetalButton
+          <GlitchButton
             label="JOIN THE COMMUNITY"
+            variant="secondary"
+            icon={
+              <Image
+                src="/images/codeutsava/discord-symbol.svg"
+                alt=""
+                width={18}
+                height={14}
+              />
+            }
             aria-label="Join the CodeUtsava community on Discord"
             onClick={() => window.open("https://discord.gg/Ek9gr2Xnqb", "_blank", "noopener,noreferrer")}
           />
