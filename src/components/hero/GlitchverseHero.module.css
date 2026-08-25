@@ -198,7 +198,7 @@
   .tagline { max-width: 90vw; margin-top: 10px; font-size: clamp(14px,4.2vw,18px); letter-spacing: .01em; line-height: 1.18; text-wrap: balance; }
   .eventLine { max-width: 310px; margin-top: 9px; font-size: clamp(8px,2.3vw,10px); letter-spacing: .07em; line-height: 1.55; text-wrap: balance; }
   .heroActions { width: min(100%,320px); margin-top: clamp(22px,4svh,32px); flex-direction: column; gap: 12px; }
-  .heroActions > * { width: 100% !important; min-height: 52px; }
+  .heroActions > * { width: 100% !important; min-height: 48px; }
   .bottomRail { display: flex; padding-inline: 14px; justify-content: center; }
   .bottomRail span:not(:nth-child(2)) { display: none; }
 }
@@ -218,8 +218,8 @@
   .eyebrow { font-size: clamp(20px,5svh,28px); }
   .pagerShell { width: min(90vw,480px); height: 84px; }
   .identity { width: 94%; }
-  .heroActions { width: min(100%,500px); max-width: none; margin-top: 14px; flex-direction: row; }
-  .heroActions > * { width: min(42vw,230px) !important; }
+  .heroActions { width: min(100%,500px); max-width: none; margin-top: 14px; flex-direction: row; gap: 8px; }
+  .heroActions > * { width: min(46vw,240px) !important; }
   .bottomRail { padding-block: 8px 10px; }
 }
 @media (max-width: 440px) {
