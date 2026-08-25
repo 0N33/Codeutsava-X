@@ -7,7 +7,7 @@
 class IntroSoundtrackEngine {
   private ctx: AudioContext | null = null;
   private isPlaying: boolean = false;
-  private isMuted: boolean = true;
+  private isMuted: boolean = false;
   private currentStep: number = 0;
   private timerId: number | null = null;
   private nextStepTime: number = 0;
@@ -79,11 +79,11 @@ class IntroSoundtrackEngine {
   }
 
   private notify() {
-    this.listeners.forEach((cb) => cb(this.isPlaying && !this.isMuted));
+    this.listeners.forEach((cb) => cb(!this.isMuted));
   }
 
   public getIsPlaying(): boolean {
-    return this.isPlaying && !this.isMuted;
+    return !this.isMuted;
   }
 
   public getMuted(): boolean {
@@ -93,7 +93,7 @@ class IntroSoundtrackEngine {
   public toggleMute(): boolean {
     this.isMuted = !this.isMuted;
     if (!this.isMuted) {
-      this.start();
+      this.start(true);
     } else {
       this.pause();
     }

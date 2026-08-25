@@ -115,6 +115,20 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
     return introSoundtrack.subscribe((playing) => setIsIntroMusicPlaying(playing));
   }, []);
 
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (isIntroMusicPlaying && !introSoundtrack.getIsPlaying()) {
+        introSoundtrack.start(true);
+      }
+    };
+    window.addEventListener("pointerdown", handleFirstInteraction, { once: true });
+    window.addEventListener("keydown", handleFirstInteraction, { once: true });
+    return () => {
+      window.removeEventListener("pointerdown", handleFirstInteraction);
+      window.removeEventListener("keydown", handleFirstInteraction);
+    };
+  }, [isIntroMusicPlaying]);
+
   const toggleIntroMusic = (e: React.MouseEvent) => {
     e.stopPropagation();
     const muted = introSoundtrack.toggleMute();
