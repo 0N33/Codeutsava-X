@@ -7,7 +7,7 @@ import { GlitchButton } from "@/components/ui/glitch-button";
 import { cyberSoundtrack } from "@/utils/cyberSoundtrack";
 import styles from "./GlitchverseHero.module.css";
 
-const registrationUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfHv8OJ7jkp9thPyPx1HrWJNPoGZ2z7FaFtIqpz7lO3dIqqgg/viewform?pli=1";
+const registrationUrl = "https://codeutsava-x.devfolio.co/overview";
 
 export function GlitchverseHero() {
   const [isPlaying, setIsPlaying] = useState<boolean>(cyberSoundtrack.getIsPlaying());
