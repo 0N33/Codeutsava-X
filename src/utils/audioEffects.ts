@@ -1,9 +1,8 @@
-// Web Audio API Synthesizer: Ultra-Lightweight Retro Chime Engine
-// 100% Offline, Zero-Lag, Instant Disconnect & Debounce
+import { cyberSoundtrack } from './cyberSoundtrack';
 
 class RetroAudioEngine {
   private ctx: AudioContext | null = null;
-  private isMuted: boolean = false;
+  private isMuted: boolean = true;
   private lastChimeTime: number = 0;
 
   private getContext(): AudioContext | null {
@@ -22,6 +21,11 @@ class RetroAudioEngine {
 
   public toggleMute(): boolean {
     this.isMuted = !this.isMuted;
+    if (!this.isMuted) {
+      cyberSoundtrack.start();
+    } else {
+      cyberSoundtrack.pause();
+    }
     return this.isMuted;
   }
 
@@ -131,3 +135,4 @@ class RetroAudioEngine {
 }
 
 export const retroAudio = new RetroAudioEngine();
+export { cyberSoundtrack };
