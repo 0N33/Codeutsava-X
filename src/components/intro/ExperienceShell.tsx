@@ -129,11 +129,10 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
     retroAudio.playIntroPortalSound();
     introSoundtrack.fadeOutAndStop(0.4);
 
-    if (isIntroMusicPlaying) {
-      window.setTimeout(() => {
-        cyberSoundtrack.start();
-      }, 350);
-    }
+    // Automatically start website background music on entering the site
+    window.setTimeout(() => {
+      cyberSoundtrack.start(true);
+    }, 450);
 
     transitionTimerRef.current = window.setTimeout(() => {
       setEntered(true);
