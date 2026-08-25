@@ -198,7 +198,7 @@ export function SiteFooter() {
         <div className={styles.bottomRow}>
           {/* Left: Architected By */}
           <div className={styles.architectNote}>
-            ARCHITECTED WITH <span className="text-[#ff5fcf]">♥</span> BY{' '}
+            ARCHITECTED WITH <span className={styles.heartIcon}>♥</span> BY{' '}
             <a
               href="https://codeutsava.nitrr.ac.in/team"
               target="_blank"
