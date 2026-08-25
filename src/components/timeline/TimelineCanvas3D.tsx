@@ -151,7 +151,7 @@ export const TimelineCanvas3D: React.FC<TimelineCanvas3DProps> = ({
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
 
-      computeWrappedDescriptions(ctx, isMobile ? 185 : 242);
+      computeWrappedDescriptions(ctx, isMobile ? 210 : 250);
     };
 
     resize();
@@ -545,10 +545,10 @@ export const TimelineCanvas3D: React.FC<TimelineCanvas3DProps> = ({
         if (proj.scale > 0.18) {
           const isExpanded = expProgress > 0.40;
           const canonicalW = isMobile
-            ? (145 + 80 * expProgress)
-            : (165 + 105 * expProgress);
+            ? (160 + 105 * expProgress)
+            : (175 + 115 * expProgress);
           const canonicalH = isMobile
-            ? (52 + 130 * expProgress)
+            ? (55 + 140 * expProgress)
             : (55 + 145 * expProgress);
           const canonicalHeaderH = 15 + 13 * expProgress;
           const canonicalBodyH = canonicalH - canonicalHeaderH;
@@ -687,9 +687,16 @@ export const TimelineCanvas3D: React.FC<TimelineCanvas3DProps> = ({
 
           // STEP D: BODY CONTENT IN SILKSCREEN & GEIST MONO
           if (isExpanded) {
-            // Line 1: Uppercase Title in Silkscreen / Press Start 2P
-            ctx.font = 'bold 11px "Silkscreen", "Geist Mono", monospace';
+            // Line 1: Uppercase Title with dynamic measurement & scaling to guarantee zero edge clipping
             const titleStr = scrambleDuringExpansion(evt.title.toUpperCase(), effectiveIsCardGlitching ? effectiveCardGlitch : expProgress, tick);
+            let titleFontSize = isMobile ? 10 : 11;
+            ctx.font = `bold ${titleFontSize}px "Silkscreen", "Geist Mono", monospace`;
+            const maxTitleWidth = canonicalW - 24;
+            const measuredW = ctx.measureText(titleStr).width;
+            if (measuredW > maxTitleWidth && measuredW > 0) {
+              titleFontSize = Math.max(7.5, Math.floor(titleFontSize * (maxTitleWidth / measuredW) * 10) / 10);
+              ctx.font = `bold ${titleFontSize}px "Silkscreen", "Geist Mono", monospace`;
+            }
 
             if (effectiveIsCardGlitching) {
               ctx.fillStyle = '#00F0FF';
