@@ -149,18 +149,7 @@ export function ShortlistedTeams() {
         </div>
 
         <div className={styles.btnGroup}>
-          {openedCount < SHORTLISTED_SLOTS.length ? (
-            <button
-              type="button"
-              onClick={unlockAll}
-              className={styles.ctrlBtn}
-            >
-              <Unlock size={11} />
-              <span>UNLOCK ALL</span>
-            </button>
-          ) : null}
-
-          {openedCount > 0 ? (
+          {openedCount === SHORTLISTED_SLOTS.length ? (
             <button
               type="button"
               onClick={resealAll}
@@ -169,7 +158,16 @@ export function ShortlistedTeams() {
               <RotateCcw size={11} />
               <span>RE-SEAL ALL</span>
             </button>
-          ) : null}
+          ) : (
+            <button
+              type="button"
+              onClick={unlockAll}
+              className={styles.ctrlBtn}
+            >
+              <Unlock size={11} />
+              <span>UNLOCK ALL</span>
+            </button>
+          )}
         </div>
       </div>
 
