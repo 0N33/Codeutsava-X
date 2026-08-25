@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { MapPin, Volume2, VolumeX } from 'lucide-react';
 import { retroAudio } from '@/utils/audioEffects';
+import { cyberSoundtrack } from '@/utils/cyberSoundtrack';
 import { AmbientTetris } from './AmbientTetris';
 import styles from './SiteFooter.module.css';
 
@@ -73,12 +74,15 @@ const NAV_LINKS = [
 ];
 
 export function SiteFooter() {
-  const [isMuted, setIsMuted] = useState<boolean>(retroAudio.getMuted());
+  const [isMusicPlaying, setIsMusicPlaying] = useState<boolean>(cyberSoundtrack.getIsPlaying());
 
-  const toggleMute = () => {
-    const nextMuted = retroAudio.toggleMute();
-    setIsMuted(nextMuted);
-    if (!nextMuted) retroAudio.playXPDing();
+  useEffect(() => {
+    return cyberSoundtrack.subscribe((playing) => setIsMusicPlaying(playing));
+  }, []);
+
+  const toggleMusic = () => {
+    const isMuted = cyberSoundtrack.toggleMute();
+    setIsMusicPlaying(!isMuted);
   };
 
   const handleBackToTop = (e: React.MouseEvent) => {
@@ -239,12 +243,12 @@ export function SiteFooter() {
 
             <button
               type="button"
-              onClick={toggleMute}
+              onClick={toggleMusic}
               className={styles.audioToggleButton}
-              title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-              aria-label={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+              title={isMusicPlaying ? 'Mute Background Music' : 'Play Background Music'}
+              aria-label={isMusicPlaying ? 'Mute Background Music' : 'Play Background Music'}
             >
-              {!isMuted ? <Volume2 size={14} /> : <VolumeX size={14} />}
+              {isMusicPlaying ? <Volume2 size={14} /> : <VolumeX size={14} />}
             </button>
           </div>
         </div>

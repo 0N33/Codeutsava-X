@@ -130,6 +130,18 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [ready, entered, entering]);
 
+  const [isMuted, setIsMuted] = useState<boolean>(retroAudio.getMuted());
+
+  useEffect(() => {
+    return retroAudio.subscribe((muted) => setIsMuted(muted));
+  }, []);
+
+  const toggleSound = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const next = retroAudio.toggleMute();
+    setIsMuted(next);
+  };
+
   return (
     <div
       className={`${styles.experience} ${entering ? styles.entering : ""} ${entered ? styles.entered : ""} ${returningToHero ? styles.returning : ""}`}
@@ -141,6 +153,29 @@ export function ExperienceShell({ children }: { children: ReactNode }) {
             <div className={styles.bloom} aria-hidden="true" />
             <div className={styles.scanlines} aria-hidden="true" />
             <div className={styles.noise} aria-hidden="true" />
+
+            {/* Intro Sound Toggle Icon */}
+            <button
+              className={styles.introSoundToggle}
+              type="button"
+              onClick={toggleSound}
+              title={isMuted ? "Unmute Intro Sound" : "Mute Intro Sound"}
+              aria-label={isMuted ? "Unmute Intro Sound" : "Mute Intro Sound"}
+            >
+              {isMuted ? (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                  <line x1="23" y1="9" x2="17" y2="15" />
+                  <line x1="17" y1="9" x2="23" y2="15" />
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                </svg>
+              )}
+              <span className={styles.introSoundLabel}>{isMuted ? "SFX: OFF" : "SFX: ON"}</span>
+            </button>
             <section
               className={styles.bios}
               data-intro-content

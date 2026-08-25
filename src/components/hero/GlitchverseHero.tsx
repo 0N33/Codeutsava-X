@@ -1,13 +1,25 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { Navbar } from "@/components/navbar/Navbar";
 import { GlitchButton } from "@/components/ui/glitch-button";
+import { cyberSoundtrack } from "@/utils/cyberSoundtrack";
 import styles from "./GlitchverseHero.module.css";
 
 const registrationUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfHv8OJ7jkp9thPyPx1HrWJNPoGZ2z7FaFtIqpz7lO3dIqqgg/viewform?pli=1";
 
 export function GlitchverseHero() {
+  const [isPlaying, setIsPlaying] = useState<boolean>(cyberSoundtrack.getIsPlaying());
+
+  useEffect(() => {
+    return cyberSoundtrack.subscribe((playing) => setIsPlaying(playing));
+  }, []);
+
+  const toggleMusic = () => {
+    const isMuted = cyberSoundtrack.toggleMute();
+    setIsPlaying(!isMuted);
+  };
   return (
     <main className={styles.hero} id="top">
       <div className={styles.ambientLight} aria-hidden="true" />
@@ -62,6 +74,34 @@ export function GlitchverseHero() {
           />
         </div>
       </section>
+
+      {/* Floating Cyber Music Indicator / Toggle on the Landing Page */}
+      <button
+        type="button"
+        onClick={toggleMusic}
+        className={styles.heroMusicButton}
+        title={isPlaying ? "Mute Background Music" : "Play Background Music"}
+        aria-label={isPlaying ? "Mute Background Music" : "Play Background Music"}
+      >
+        <div className={styles.soundWaveBars}>
+          <span className={`${styles.waveBar} ${isPlaying ? styles.barAnim1 : ""}`} />
+          <span className={`${styles.waveBar} ${isPlaying ? styles.barAnim2 : ""}`} />
+          <span className={`${styles.waveBar} ${isPlaying ? styles.barAnim3 : ""}`} />
+        </div>
+        {isPlaying ? (
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.musicSvg}>
+            <path d="M11 5L6 9H2v6h4l5 4V5z" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+          </svg>
+        ) : (
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.musicSvg}>
+            <path d="M11 5L6 9H2v6h4l5 4V5z" />
+            <line x1="23" y1="9" x2="17" y2="15" />
+            <line x1="17" y1="9" x2="23" y2="15" />
+          </svg>
+        )}
+        <span className={styles.heroMusicLabel}>{isPlaying ? "MUSIC: ON" : "MUSIC: OFF"}</span>
+      </button>
 
       <div className={styles.bottomRail} aria-hidden="true">
         <span>CODEUTSAVA // X</span>

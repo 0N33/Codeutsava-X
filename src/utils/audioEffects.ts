@@ -2,8 +2,9 @@ import { cyberSoundtrack } from './cyberSoundtrack';
 
 class RetroAudioEngine {
   private ctx: AudioContext | null = null;
-  private isMuted: boolean = true;
+  private isMuted: boolean = false;
   private lastChimeTime: number = 0;
+  private listeners: Set<(muted: boolean) => void> = new Set();
 
   private getContext(): AudioContext | null {
     if (typeof window === 'undefined') return null;
@@ -19,14 +20,26 @@ class RetroAudioEngine {
     return this.ctx;
   }
 
+  public subscribe(cb: (muted: boolean) => void): () => void {
+    this.listeners.add(cb);
+    return () => {
+      this.listeners.delete(cb);
+    };
+  }
+
+  private notify() {
+    this.listeners.forEach((cb) => cb(this.isMuted));
+  }
+
   public toggleMute(): boolean {
     this.isMuted = !this.isMuted;
-    if (!this.isMuted) {
-      cyberSoundtrack.start();
-    } else {
-      cyberSoundtrack.pause();
-    }
+    this.notify();
     return this.isMuted;
+  }
+
+  public setMuted(muted: boolean) {
+    this.isMuted = muted;
+    this.notify();
   }
 
   public getMuted(): boolean {
@@ -118,6 +131,7 @@ class RetroAudioEngine {
   // Plays a distinct, soothing cyberpunk chord when entering the site
   // =========================================================================
   public playIntroPortalSound() {
+    if (this.isMuted) return;
     const ctx = this.getContext();
     if (!ctx) return;
 

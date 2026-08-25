@@ -71,9 +71,11 @@ class CyberSoundtrackEngine {
     this.masterGain.connect(this.ctx.destination);
   }
 
-  public subscribe(cb: (playing: boolean) => void) {
+  public subscribe(cb: (playing: boolean) => void): () => void {
     this.listeners.add(cb);
-    return () => this.listeners.delete(cb);
+    return () => {
+      this.listeners.delete(cb);
+    };
   }
 
   private notify() {
