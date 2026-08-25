@@ -116,6 +116,8 @@ export function SiteFooter() {
               />
             </a>
 
+            <span className={styles.brandDivider} aria-hidden="true" />
+
             <div className={styles.tcpBrandText}>
               <span>TURING CLUB OF</span>
               <span>PROGRAMMERS</span>

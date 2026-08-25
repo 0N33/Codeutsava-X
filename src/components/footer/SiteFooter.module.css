@@ -58,7 +58,7 @@
 .brandLogosGroup {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .logoItem {
@@ -71,10 +71,18 @@
   filter: drop-shadow(0 0 10px rgba(255, 95, 207, 0.6));
 }
 
+.brandDivider {
+  width: 1.5px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.45);
+  margin: 0 4px;
+}
+
 .tcpBrandText {
   display: flex;
   flex-direction: column;
   line-height: 1.25;
+  text-align: left;
 }
 
 .tcpBrandText span {
@@ -102,7 +110,7 @@
 .socialIconsRow {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .socialIconLink {
@@ -131,7 +139,7 @@
 }
 
 /* =========================================================================
-   2. MIDDLE ROW: FAQ-STYLED ABOUT NIT RAIPUR CARD (LEFT) & NAV LINKS (RIGHT)
+   2. MIDDLE ROW: ABOUT NIT RAIPUR CARD & NAV LINKS
    ========================================================================= */
 .middleRow {
   display: grid;
@@ -347,47 +355,138 @@
 }
 
 /* =========================================================================
-   RESPONSIVE LAYOUT
+   ANDROID & MOBILE OPTIMIZED LAYOUT (MATCHING REFERENCE SCREENSHOTS)
    ========================================================================= */
-@media (max-width: 900px) {
-  .topRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+@media (max-width: 768px) {
+  .footer {
+    padding: 36px 16px 20px;
   }
 
-  .socialsGroup {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .middleRow {
-    grid-template-columns: 1fr;
+  .footerContainer {
     gap: 28px;
   }
 
-  .aboutNitCard {
+  /* 1. Centered Brand Logos & Text */
+  .topRow {
     flex-direction: column;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .brandLogosGroup {
+    justify-content: center;
     align-items: center;
   }
 
-  .navLinksCol {
-    align-items: flex-start;
+  .brandDivider {
+    height: 32px;
+  }
+
+  /* 2. Centered Social Applications Row & Subtitle */
+  .socialsGroup {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .socialIconsRow {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .socialIconLink svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .socialUpdatesNote {
+    text-align: center;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    line-height: 1.45;
+  }
+
+  /* 3. Centered Middle Layout */
+  .middleRow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    width: 100%;
+  }
+
+  .aboutNitCard {
+    flex-direction: row;
+    align-items: center;
     text-align: left;
+    padding: 18px 16px;
+    gap: 16px;
+    width: 100%;
+    clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
+  }
+
+  .aboutNitCard::before {
+    width: 24px;
+    height: 24px;
+    transform: rotate(-45deg) translate(-8px, -4px);
+  }
+
+  .nitLogoWrap {
+    width: 60px;
+    height: 60px;
+  }
+
+  .aboutTitle {
+    font-size: 13px;
+  }
+
+  .aboutDescription {
+    font-size: 8.5px;
+    line-height: 1.48;
+  }
+
+  /* 4. Centered Navigation Matrix (HOME EVENTS SPEAKERS / FAQ CONTACT US) */
+  .navLinksCol {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px 22px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navLinkItem {
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
   }
 
   .navLinkItem:hover {
-    transform: translateX(4px);
+    transform: translateY(-2px);
   }
 
+  /* 5. Mobile Bottom Bar */
   .bottomRow {
-    flex-direction: column;
-    text-align: center;
-    gap: 14px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    gap: 12px;
+    font-size: 8.5px;
+  }
+
+  .backToTopLink {
+    display: none;
   }
 
   .bottomRightGroup {
-    justify-content: center;
+    justify-content: flex-end;
+    gap: 10px;
   }
 }
